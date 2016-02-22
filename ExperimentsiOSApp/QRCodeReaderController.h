@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "Experiment.h"
 
-@interface QRCodeReaderController : UIViewController
+@interface QRCodeReaderController : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
+@property (weak, nonatomic) IBOutlet UIView *qrCodeView;
 
 @end

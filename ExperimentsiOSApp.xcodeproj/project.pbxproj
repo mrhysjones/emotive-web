@@ -7,28 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7DFD231C7B3FE100DAD5BC /* Experiment.m */; };
 		CAC424EA1C77633E00FAC9B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424E91C77633E00FAC9B2 /* main.m */; };
 		CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */; };
-		CAC424F01C77633E00FAC9B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424EF1C77633E00FAC9B2 /* ViewController.m */; };
+		CAC424F01C77633E00FAC9B2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */; };
 		CAC424F31C77633E00FAC9B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F11C77633E00FAC9B2 /* Main.storyboard */; };
 		CAC424F51C77633E00FAC9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F41C77633E00FAC9B2 /* Assets.xcassets */; };
 		CAC424F81C77633E00FAC9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */; };
 		CAC425091C77693800FAC9B2 /* QRCodeReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */; };
+		CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA7DFD221C7B3FE100DAD5BC /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
+		CA7DFD231C7B3FE100DAD5BC /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 		CAC424E51C77633E00FAC9B2 /* ExperimentsiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentsiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC424E91C77633E00FAC9B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAC424EB1C77633E00FAC9B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CAC424EE1C77633E00FAC9B2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CAC424EF1C77633E00FAC9B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CAC424EE1C77633E00FAC9B2 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		CAC424F21C77633E00FAC9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAC424F41C77633E00FAC9B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC424F71C77633E00FAC9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC424F91C77633E00FAC9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC425071C77693800FAC9B2 /* QRCodeReaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderController.h; sourceTree = "<group>"; };
 		CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderController.m; sourceTree = "<group>"; };
+		CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentSummaryController.h; sourceTree = "<group>"; };
+		CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentSummaryController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +67,16 @@
 		CAC424E71C77633E00FAC9B2 /* ExperimentsiOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				CA7DFD221C7B3FE100DAD5BC /* Experiment.h */,
+				CA7DFD231C7B3FE100DAD5BC /* Experiment.m */,
 				CAC425071C77693800FAC9B2 /* QRCodeReaderController.h */,
 				CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */,
 				CAC424EB1C77633E00FAC9B2 /* AppDelegate.h */,
 				CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */,
-				CAC424EE1C77633E00FAC9B2 /* ViewController.h */,
-				CAC424EF1C77633E00FAC9B2 /* ViewController.m */,
+				CAC424EE1C77633E00FAC9B2 /* HomeViewController.h */,
+				CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */,
+				CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */,
+				CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */,
 				CAC424F11C77633E00FAC9B2 /* Main.storyboard */,
 				CAC424F41C77633E00FAC9B2 /* Assets.xcassets */,
 				CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */,
@@ -154,8 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */,
 				CAC425091C77693800FAC9B2 /* QRCodeReaderController.m in Sources */,
-				CAC424F01C77633E00FAC9B2 /* ViewController.m in Sources */,
+				CAC424F01C77633E00FAC9B2 /* HomeViewController.m in Sources */,
+				CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */,
 				CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */,
 				CAC424EA1C77633E00FAC9B2 /* main.m in Sources */,
 			);
@@ -306,6 +318,7 @@
 				CAC424FE1C77633E00FAC9B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
