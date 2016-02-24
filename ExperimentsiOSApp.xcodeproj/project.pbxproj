@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		CA7DFD221C7B3FE100DAD5BC /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
 		CA7DFD231C7B3FE100DAD5BC /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
-		CAC424E51C77633E00FAC9B2 /* ExperimentsiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExperimentsiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAC424E51C77633E00FAC9B2 /* EmotiveWeb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotiveWeb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC424E91C77633E00FAC9B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAC424EB1C77633E00FAC9B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		CAC424E61C77633E00FAC9B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CAC424E51C77633E00FAC9B2 /* ExperimentsiOSApp.app */,
+				CAC424E51C77633E00FAC9B2 /* EmotiveWeb.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,7 +111,7 @@
 			);
 			name = ExperimentsiOSApp;
 			productName = ExperimentsiOSApp;
-			productReference = CAC424E51C77633E00FAC9B2 /* ExperimentsiOSApp.app */;
+			productReference = CAC424E51C77633E00FAC9B2 /* EmotiveWeb.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -284,7 +284,7 @@
 				INFOPLIST_FILE = ExperimentsiOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrhysjones.ExperimentsiOSApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EmotiveWeb;
 			};
 			name = Debug;
 		};
@@ -295,7 +295,7 @@
 				INFOPLIST_FILE = ExperimentsiOSApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrhysjones.ExperimentsiOSApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EmotiveWeb;
 			};
 			name = Release;
 		};
