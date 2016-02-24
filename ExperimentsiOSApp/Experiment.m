@@ -46,7 +46,7 @@ static Experiment *instance = nil;
     [NSURLConnection sendSynchronousRequest:request
                           returningResponse:&urlResponse error:&requestError];
     
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:nil error:nil];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NULL error:NULL];
     
     instance.name = dict[@"name"];
     instance.description = dict[@"description"];

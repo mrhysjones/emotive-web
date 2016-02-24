@@ -98,14 +98,24 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLM-0F-N8Q">
+                                <rect key="frame" x="219" y="470" width="163" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Start Experiment"/>
+                                <connections>
+                                    <segue destination="Mwh-cW-cMc" kind="show" id="0Jp-N0-33j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="YkX-Mc-uhu" firstAttribute="top" secondItem="fLM-0F-N8Q" secondAttribute="bottom" constant="91" id="696-yk-eKG"/>
                             <constraint firstItem="47u-Cq-8d5" firstAttribute="top" secondItem="UKV-iF-q6o" secondAttribute="bottom" constant="20" id="Aue-78-24g"/>
                             <constraint firstItem="UKV-iF-q6o" firstAttribute="centerX" secondItem="GSO-p9-rnu" secondAttribute="centerX" id="Ixc-1f-oTw"/>
                             <constraint firstItem="UKV-iF-q6o" firstAttribute="top" secondItem="KEl-6L-SY4" secondAttribute="bottom" constant="270" id="OWD-f6-Imp"/>
                             <constraint firstItem="47u-Cq-8d5" firstAttribute="top" secondItem="UKV-iF-q6o" secondAttribute="bottom" constant="19" id="bAR-0V-M3b"/>
                             <constraint firstItem="UKV-iF-q6o" firstAttribute="centerY" secondItem="GSO-p9-rnu" secondAttribute="centerY" id="bfL-yb-13z"/>
+                            <constraint firstItem="fLM-0F-N8Q" firstAttribute="centerX" secondItem="GSO-p9-rnu" secondAttribute="centerX" id="bqE-FZ-8zY"/>
                             <constraint firstItem="47u-Cq-8d5" firstAttribute="centerX" secondItem="GSO-p9-rnu" secondAttribute="centerX" id="cLo-ma-rQb"/>
                             <constraint firstItem="WOz-Qf-7KG" firstAttribute="top" secondItem="47u-Cq-8d5" secondAttribute="bottom" constant="23" id="dnx-dv-PbN"/>
                             <constraint firstItem="WOz-Qf-7KG" firstAttribute="leading" secondItem="GSO-p9-rnu" secondAttribute="leading" constant="227" id="hcA-YH-dHt"/>
@@ -138,6 +148,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sh-Ao-d2l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1777" y="-45"/>
+        </scene>
+        <!--Tracking Preview View Controller-->
+        <scene sceneID="kUV-sW-XAT">
+            <objects>
+                <viewController id="Mwh-cW-cMc" customClass="TrackingPreviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sU4-xH-sq5"/>
+                        <viewControllerLayoutGuide type="bottom" id="dC8-JM-Q8w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c03-1D-GcX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-3v-UVp">
+                                <rect key="frame" x="43" y="89" width="513" height="368"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000000000000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="wG5-3v-UVp" firstAttribute="centerY" secondItem="c03-1D-GcX" secondAttribute="centerY" id="SL7-qz-UYh"/>
+                            <constraint firstItem="wG5-3v-UVp" firstAttribute="centerX" secondItem="c03-1D-GcX" secondAttribute="centerX" id="U3H-Fn-3SV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="wG5-3v-UVp" id="p03-De-Djr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tYh-J6-faE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1749" y="742"/>
         </scene>
         <!--QR Code Reader-->
         <scene sceneID="ZgE-RK-gkD">
