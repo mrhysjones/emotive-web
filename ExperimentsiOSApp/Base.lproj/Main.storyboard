@@ -61,6 +61,39 @@
             </objects>
             <point key="canvasLocation" x="1117" y="-45"/>
         </scene>
+        <!--Experiment Items-->
+        <scene sceneID="yYJ-QP-h2z">
+            <objects>
+                <viewController title="Experiment Items" id="ZNB-Py-Pys" customClass="ExperimentItemViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Si5-9q-yQZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="k72-UY-UIz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OQd-Ia-Emd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcu-or-cw0" customClass="YTPlayerView">
+                                <rect key="frame" x="20" y="149" width="560" height="292"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gcu-or-cw0" firstAttribute="centerX" secondItem="OQd-Ia-Emd" secondAttribute="centerX" id="Arh-Tg-ucG"/>
+                            <constraint firstAttribute="trailing" secondItem="gcu-or-cw0" secondAttribute="trailing" constant="20" id="B7H-yQ-EIk"/>
+                            <constraint firstItem="gcu-or-cw0" firstAttribute="centerY" secondItem="OQd-Ia-Emd" secondAttribute="centerY" id="FYg-ao-hsa"/>
+                            <constraint firstItem="gcu-or-cw0" firstAttribute="leading" secondItem="OQd-Ia-Emd" secondAttribute="leading" constant="20" id="TBE-D4-XxR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="gcu-or-cw0" id="brC-17-huc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wol-od-baX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="1522"/>
+        </scene>
         <!--Overview-->
         <scene sceneID="QgP-Mg-8RY">
             <objects>
@@ -170,8 +203,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-3v-UVp">
-                                <rect key="frame" x="43" y="89" width="513" height="368"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-3v-UVp">
+                                <rect key="frame" x="43" y="133" width="513" height="324"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocJ-UT-n3d">
                                 <rect key="frame" x="234" y="479" width="131" height="30"/>
@@ -183,6 +216,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThH-WG-eCP">
                                 <rect key="frame" x="239" y="534" width="121" height="30"/>
                                 <state key="normal" title="Begin Experiment"/>
+                                <connections>
+                                    <segue destination="ZNB-Py-Pys" kind="show" id="ewQ-QQ-8Do"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,13 +226,24 @@
                             <constraint firstItem="ocJ-UT-n3d" firstAttribute="centerX" secondItem="c03-1D-GcX" secondAttribute="centerX" id="3LY-3U-mWf"/>
                             <constraint firstItem="dC8-JM-Q8w" firstAttribute="top" secondItem="ThH-WG-eCP" secondAttribute="bottom" constant="36" id="3TZ-oG-6Ri"/>
                             <constraint firstItem="wG5-3v-UVp" firstAttribute="centerX" secondItem="c03-1D-GcX" secondAttribute="centerX" id="P7p-hu-V0e"/>
+                            <constraint firstItem="ThH-WG-eCP" firstAttribute="centerX" secondItem="c03-1D-GcX" secondAttribute="centerX" id="Ruo-da-P0j"/>
                             <constraint firstItem="ThH-WG-eCP" firstAttribute="top" secondItem="ocJ-UT-n3d" secondAttribute="bottom" constant="25" id="ZpL-Jq-tGd"/>
                             <constraint firstItem="wG5-3v-UVp" firstAttribute="leading" secondItem="c03-1D-GcX" secondAttribute="leadingMargin" constant="23" id="akN-H7-PB2"/>
+                            <constraint firstItem="ThH-WG-eCP" firstAttribute="leading" secondItem="c03-1D-GcX" secondAttribute="leadingMargin" constant="219" id="c3V-wI-y6P"/>
                             <constraint firstItem="wG5-3v-UVp" firstAttribute="top" secondItem="sU4-xH-sq5" secondAttribute="bottom" constant="69" id="c8o-DC-6Mo"/>
                             <constraint firstItem="dC8-JM-Q8w" firstAttribute="top" secondItem="wG5-3v-UVp" secondAttribute="bottom" constant="143" id="gXA-1U-tC7"/>
                             <constraint firstItem="ocJ-UT-n3d" firstAttribute="top" secondItem="wG5-3v-UVp" secondAttribute="bottom" constant="22" id="pny-9v-ht9"/>
                             <constraint firstItem="ThH-WG-eCP" firstAttribute="centerX" secondItem="c03-1D-GcX" secondAttribute="centerX" id="ptb-Yd-suT"/>
+                            <constraint firstItem="ThH-WG-eCP" firstAttribute="top" secondItem="ocJ-UT-n3d" secondAttribute="bottom" constant="25" id="rc2-IW-rhc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZpL-Jq-tGd"/>
+                                <exclude reference="c3V-wI-y6P"/>
+                                <exclude reference="ptb-Yd-suT"/>
+                                <exclude reference="3TZ-oG-6Ri"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="videoView" destination="wG5-3v-UVp" id="p03-De-Djr"/>
@@ -219,8 +266,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kon-Hk-QaG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kon-Hk-QaG">
                                 <rect key="frame" x="0.0" y="44" width="760" height="980"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="980" id="4Kp-oC-2ZH"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -47,6 +47,9 @@
 		CAC425091C77693800FAC9B2 /* QRCodeReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */; };
 		CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */; };
 		CACF56F71C7F125B0083C0B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CACF56F51C7F125B0083C0B1 /* Main.storyboard */; };
+		CACF56FB1C7F54330083C0B1 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACF56F81C7F54330083C0B1 /* Assets.bundle */; };
+		CACF56FC1C7F54330083C0B1 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF56FA1C7F54330083C0B1 /* YTPlayerView.m */; };
+		CACF57001C7F54DC0083C0B1 /* ExperimentItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF56FF1C7F54DC0083C0B1 /* ExperimentItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +113,11 @@
 		CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentSummaryController.h; sourceTree = "<group>"; };
 		CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentSummaryController.m; sourceTree = "<group>"; };
 		CACF56F61C7F125B0083C0B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ExperimentsiOSApp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CACF56F81C7F54330083C0B1 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
+		CACF56F91C7F54330083C0B1 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerView.h; sourceTree = "<group>"; };
+		CACF56FA1C7F54330083C0B1 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerView.m; sourceTree = "<group>"; };
+		CACF56FE1C7F54DC0083C0B1 /* ExperimentItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentItemViewController.h; sourceTree = "<group>"; };
+		CACF56FF1C7F54DC0083C0B1 /* ExperimentItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +218,7 @@
 		CA8D64281C7E2BA4004B6D80 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CACF56FD1C7F54430083C0B1 /* YouTube Helper */,
 				CA8D645C1C7E2D65004B6D80 /* Experiment Model */,
 				CA8D645B1C7E2D51004B6D80 /* View Controllers */,
 				CA8D64261C7E2B81004B6D80 /* Frameworks */,
@@ -233,6 +242,8 @@
 		CA8D645B1C7E2D51004B6D80 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CACF56FE1C7F54DC0083C0B1 /* ExperimentItemViewController.h */,
+				CACF56FF1C7F54DC0083C0B1 /* ExperimentItemViewController.m */,
 				CA8D64761C7E2FBD004B6D80 /* TrackingPreviewViewController.h */,
 				CA8D64771C7E2FBD004B6D80 /* TrackingPreviewViewController.m */,
 				CAC425071C77693800FAC9B2 /* QRCodeReaderController.h */,
@@ -287,6 +298,16 @@
 				CAC424E91C77633E00FAC9B2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CACF56FD1C7F54430083C0B1 /* YouTube Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CACF56F81C7F54330083C0B1 /* Assets.bundle */,
+				CACF56F91C7F54330083C0B1 /* YTPlayerView.h */,
+				CACF56FA1C7F54330083C0B1 /* YTPlayerView.m */,
+			);
+			name = "YouTube Helper";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CACF56FB1C7F54330083C0B1 /* Assets.bundle in Resources */,
 				CA8D64441C7E2C1A004B6D80 /* emotions.train.pca.range in Resources */,
 				CAC424F81C77633E00FAC9B2 /* LaunchScreen.storyboard in Resources */,
 				CAC424F51C77633E00FAC9B2 /* Assets.xcassets in Resources */,
@@ -380,9 +402,11 @@
 				CA8D643D1C7E2C05004B6D80 /* Patch.cc in Sources */,
 				CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */,
 				CA8D64541C7E2CCE004B6D80 /* svmWrapper.mm in Sources */,
+				CACF57001C7F54DC0083C0B1 /* ExperimentItemViewController.m in Sources */,
 				CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */,
 				CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */,
 				CAC424EA1C77633E00FAC9B2 /* main.m in Sources */,
+				CACF56FC1C7F54330083C0B1 /* YTPlayerView.m in Sources */,
 				CA8D64551C7E2CCE004B6D80 /* trackerWrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
