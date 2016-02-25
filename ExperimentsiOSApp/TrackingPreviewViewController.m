@@ -1,5 +1,5 @@
 //
-//  TrackingPreviewController.m
+//  TrackingPreviewViewController.m
 //  ExperimentsiOSApp
 //
 //  Created by Matthew Jones on 24/02/2016.
@@ -122,8 +122,13 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
         // Show modified image on video view
         [self.videoView performSelectorOnMainThread:@selector(setImage:) withObject:trackedImage waitUntilDone:YES];
     }
-    
-    
 }
+
+- (IBAction)resetTracker:(id)sender {
+    [self.tracker resetModel];
+}
+
+
+
 
 @end

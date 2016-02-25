@@ -1,5 +1,5 @@
 //
-//  TrackingPreviewController.h
+//  TrackingPreviewViewController.h
 //  ExperimentsiOSApp
 //
 //  Created by Matthew Jones on 24/02/2016.
