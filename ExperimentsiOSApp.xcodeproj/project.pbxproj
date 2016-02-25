@@ -42,11 +42,11 @@
 		CAC424EA1C77633E00FAC9B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424E91C77633E00FAC9B2 /* main.m */; };
 		CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */; };
 		CAC424F01C77633E00FAC9B2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */; };
-		CAC424F31C77633E00FAC9B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F11C77633E00FAC9B2 /* Main.storyboard */; };
 		CAC424F51C77633E00FAC9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F41C77633E00FAC9B2 /* Assets.xcassets */; };
 		CAC424F81C77633E00FAC9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */; };
 		CAC425091C77693800FAC9B2 /* QRCodeReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */; };
 		CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */; };
+		CACF56F71C7F125B0083C0B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CACF56F51C7F125B0083C0B1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,7 +102,6 @@
 		CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CAC424EE1C77633E00FAC9B2 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		CAC424F21C77633E00FAC9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAC424F41C77633E00FAC9B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC424F71C77633E00FAC9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC424F91C77633E00FAC9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderController.m; sourceTree = "<group>"; };
 		CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentSummaryController.h; sourceTree = "<group>"; };
 		CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentSummaryController.m; sourceTree = "<group>"; };
+		CACF56F61C7F125B0083C0B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ExperimentsiOSApp/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +223,8 @@
 				CAC424EB1C77633E00FAC9B2 /* AppDelegate.h */,
 				CAC424F91C77633E00FAC9B2 /* Info.plist */,
 				CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */,
+				CACF56F51C7F125B0083C0B1 /* Main.storyboard */,
 				CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */,
-				CAC424F11C77633E00FAC9B2 /* Main.storyboard */,
 				CAC424F41C77633E00FAC9B2 /* Assets.xcassets */,
 			);
 			name = App;
@@ -352,8 +352,8 @@
 				CA8D64491C7E2C76004B6D80 /* face.con in Resources */,
 				CA8D644B1C7E2C76004B6D80 /* face.tri in Resources */,
 				CA8D644C1C7E2C76004B6D80 /* face2.tracker in Resources */,
+				CACF56F71C7F125B0083C0B1 /* Main.storyboard in Resources */,
 				CA8D644A1C7E2C76004B6D80 /* face.tracker in Resources */,
-				CAC424F31C77633E00FAC9B2 /* Main.storyboard in Resources */,
 				CA8D64431C7E2C1A004B6D80 /* emotions.train.pca.model in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,20 +390,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CAC424F11C77633E00FAC9B2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC424F21C77633E00FAC9B2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CAC424F71C77633E00FAC9B2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CACF56F51C7F125B0083C0B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CACF56F61C7F125B0083C0B1 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

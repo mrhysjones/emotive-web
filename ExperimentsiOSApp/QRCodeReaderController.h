@@ -11,6 +11,6 @@
 #import "Experiment.h"
 
 @interface QRCodeReaderController : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
-@property (weak, nonatomic) IBOutlet UIView *qrCodeView;
+@property (weak, nonatomic) IBOutlet UIImageView *qrCodeView;
 
 @end

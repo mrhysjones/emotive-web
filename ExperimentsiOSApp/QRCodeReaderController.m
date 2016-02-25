@@ -65,7 +65,9 @@ NSString *qrcode;
             qrcode = metadataObj.stringValue;
             Experiment *exp = [Experiment getInstance];
             [exp getExperimentInfo:[@"http://" stringByAppendingString:qrcode]];
-            [self performSegueWithIdentifier:@"QRCodeSegue" sender:self];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"QRCodeSegue" sender:self];
+            });
         }
     }
 }

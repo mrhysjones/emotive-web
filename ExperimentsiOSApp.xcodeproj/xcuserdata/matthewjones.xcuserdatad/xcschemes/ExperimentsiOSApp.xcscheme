@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CAC424E41C77633E00FAC9B2"
-               BuildableName = "ExperimentsiOSApp.app"
+               BuildableName = "EmotiveWeb.app"
                BlueprintName = "ExperimentsiOSApp"
                ReferencedContainer = "container:ExperimentsiOSApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CAC424E41C77633E00FAC9B2"
-            BuildableName = "ExperimentsiOSApp.app"
+            BuildableName = "EmotiveWeb.app"
             BlueprintName = "ExperimentsiOSApp"
             ReferencedContainer = "container:ExperimentsiOSApp.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CAC424E41C77633E00FAC9B2"
-            BuildableName = "ExperimentsiOSApp.app"
+            BuildableName = "EmotiveWeb.app"
             BlueprintName = "ExperimentsiOSApp"
             ReferencedContainer = "container:ExperimentsiOSApp.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CAC424E41C77633E00FAC9B2"
-            BuildableName = "ExperimentsiOSApp.app"
+            BuildableName = "EmotiveWeb.app"
             BlueprintName = "ExperimentsiOSApp"
             ReferencedContainer = "container:ExperimentsiOSApp.xcodeproj">
          </BuildableReference>
