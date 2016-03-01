@@ -61,6 +61,36 @@
             </objects>
             <point key="canvasLocation" x="425" y="19"/>
         </scene>
+        <!--End of experiment-->
+        <scene sceneID="62l-Nf-LTv">
+            <objects>
+                <viewController title="End of experiment" id="NlE-YV-RLx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QcW-na-Xnv"/>
+                        <viewControllerLayoutGuide type="bottom" id="YBj-No-8in"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ETW-Vk-5ks">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Experiment finished" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQe-eg-8Oz">
+                                <rect key="frame" x="184" y="281" width="233" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KQe-eg-8Oz" firstAttribute="centerY" secondItem="ETW-Vk-5ks" secondAttribute="centerY" id="Sh7-fA-CRA"/>
+                            <constraint firstItem="KQe-eg-8Oz" firstAttribute="centerX" secondItem="ETW-Vk-5ks" secondAttribute="centerX" id="kuX-Tc-pdh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCu-SA-H1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1921" y="2258"/>
+        </scene>
         <!--Experiment Items-->
         <scene sceneID="yYJ-QP-h2z">
             <objects>
@@ -77,13 +107,6 @@
                                 <rect key="frame" x="20" y="149" width="560" height="292"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MA0-tf-ig5">
-                                <rect key="frame" x="279" y="493" width="42" height="30"/>
-                                <state key="normal" title="Tweet"/>
-                                <connections>
-                                    <segue destination="zDh-Wo-NIf" kind="show" id="ydL-zc-zpi"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -91,35 +114,16 @@
                             <constraint firstAttribute="trailing" secondItem="gcu-or-cw0" secondAttribute="trailing" constant="20" id="B7H-yQ-EIk"/>
                             <constraint firstItem="gcu-or-cw0" firstAttribute="centerY" secondItem="OQd-Ia-Emd" secondAttribute="centerY" id="FYg-ao-hsa"/>
                             <constraint firstItem="gcu-or-cw0" firstAttribute="leading" secondItem="OQd-Ia-Emd" secondAttribute="leading" constant="20" id="TBE-D4-XxR"/>
-                            <constraint firstItem="MA0-tf-ig5" firstAttribute="centerX" secondItem="OQd-Ia-Emd" secondAttribute="centerX" id="gKg-Mx-OHo"/>
-                            <constraint firstItem="MA0-tf-ig5" firstAttribute="top" secondItem="gcu-or-cw0" secondAttribute="bottom" constant="52" id="j61-qp-0Af"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playerView" destination="gcu-or-cw0" id="brC-17-huc"/>
+                        <segue destination="NlE-YV-RLx" kind="show" identifier="experimentEndSegue" id="t38-V8-HOl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wol-od-baX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1921" y="1486"/>
-        </scene>
-        <!--Tweet-->
-        <scene sceneID="vYL-lB-BlT">
-            <objects>
-                <viewController title="Tweet" id="zDh-Wo-NIf" customClass="TweetViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I1Q-9g-kyf"/>
-                        <viewControllerLayoutGuide type="bottom" id="VJd-2d-PzO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="viU-c2-TjT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9v1-rg-S7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1921" y="2294"/>
         </scene>
         <!--Overview-->
         <scene sceneID="QgP-Mg-8RY">
@@ -168,9 +172,9 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLM-0F-N8Q">
-                                <rect key="frame" x="219" y="470" width="163" height="39"/>
+                                <rect key="frame" x="221" y="470" width="159" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Start Experiment"/>
+                                <state key="normal" title="Start Calibration"/>
                                 <connections>
                                     <segue destination="Mwh-cW-cMc" kind="show" id="0Jp-N0-33j"/>
                                 </connections>

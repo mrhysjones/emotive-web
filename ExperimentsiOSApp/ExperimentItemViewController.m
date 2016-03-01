@@ -8,7 +8,6 @@
 
 #import "ExperimentItemViewController.h"
 
-
 @interface ExperimentItemViewController ()
 
 @end
@@ -18,8 +17,122 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self.playerView loadWithVideoId:@"M7lc1UVf-VE"];
+    [self loadFirstExperiment];
+}
+
+-(void)loadFirstExperiment{
+    Experiment* exp = [Experiment getInstance];
+    NSDictionary* firstItemData = exp.items[0];
+    NSString* itemType = firstItemData[@"dataType"];
+    NSString* itemData = firstItemData[@"data"];
+    NSString* itemTimeString = firstItemData[@"displaySeconds"];
+    int itemTime = [itemTimeString intValue];
     
+    if ([itemType  isEqual: @"twitter"]){
+        [self loadTweetView:itemData];
+        [self loadNextExperiment:itemTime];
+    }
+    else if ([itemType isEqual:@"youtube"]){
+        [self loadYoutubeView:itemData];
+        [self loadNextExperiment:itemTime];
+    }
+    else{
+        [self loadWebView:itemData];
+        [self loadNextExperiment:itemTime];
+    }
+}
+
+
+-(void) loadTweetView:(NSString*) data{
+    // Clear sub view
+    [self clearSubViews];
+    
+    // Extract tweet ID from URL given in the API
+    NSString* tweetID = [self getTweetIDFromURL:data];
+    
+    // Create tweet view based on tweet ID 
+    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
+    [client loadTweetWithID:tweetID completion:^(TWTRTweet *tweet, NSError *error) {
+        if (tweet) {
+            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet];
+            [self.view addSubview:tweetView];
+            tweetView.center = [self.view convertPoint:self.view.center fromView:self.view.superview];
+        } else {
+            NSLog(@"Error loading Tweet: %@", [error localizedDescription]);
+        }
+    }];
+}
+
+
+-(void) loadWebView:(NSString*) data{
+    
+    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    webview.scalesPageToFit = YES;
+    webview.autoresizesSubviews = YES;
+    webview.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    [webview setBackgroundColor:[UIColor clearColor]];
+    NSURL *targetURL = [NSURL URLWithString:data];
+    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+    [webview loadRequest:request];
+    
+    [self.view addSubview:webview];
+}
+
+-(void) loadYoutubeView:(NSString*) data{
+    [self clearSubViews];
+    YTPlayerView *youtubeView = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    [self.view addSubview:youtubeView];
+    [youtubeView loadWithVideoId:data];
+}
+
+
+- (void)loadNextExperiment:(int) time{
+    
+    Experiment* exp = [Experiment getInstance];
+    [exp updateCurrentItem];
+    int currentIndex =  [exp.currentItem intValue];
+    if (currentIndex != -1){
+        NSDictionary* itemData = exp.items[currentIndex];
+        NSString* itemType = itemData[@"dataType"];
+        NSString* itemDatasource = itemData[@"data"];
+        NSString* itemTimeString = itemData[@"displaySeconds"];
+        int itemTime = [itemTimeString intValue];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            if ([itemType  isEqual: @"twitter"]){
+                [self loadTweetView:itemDatasource];
+                [self loadNextExperiment:itemTime];
+            }
+            else if ([itemType isEqual:@"youtube"]){
+                [self loadYoutubeView:itemDatasource];
+                [self loadNextExperiment:itemTime];
+            }
+            else {
+                [self loadWebView:itemDatasource];
+                [self loadNextExperiment:itemTime];
+            }
+        });
+    }
+    else{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"experimentEndSegue" sender:self];
+        });
+    }
+}
+
+-(void)clearSubViews{
+    for (UIView *subView in self.view.subviews)
+    {
+        [subView removeFromSuperview];
+    }
+}
+
+-(NSString*) getTweetIDFromURL:(NSString*) url{
+    NSArray* urlComponents = [url componentsSeparatedByString: @"/"];
+    NSString* tweetID = [urlComponents objectAtIndex:([urlComponents count] -1)];
+    return tweetID;
 }
 
 - (void)didReceiveMemoryWarning {

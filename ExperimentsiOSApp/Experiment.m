@@ -13,6 +13,7 @@
 @synthesize description;
 @synthesize createdBy;
 @synthesize items;
+@synthesize currentItem;
 
 static Experiment *instance = nil;
 
@@ -52,14 +53,20 @@ static Experiment *instance = nil;
     instance.description = dict[@"description"];
     instance.createdBy = dict[@"createdBy"];
     instance.items = dict[@"items"];
-    
-
-
+    instance.currentItem = [NSNumber numberWithInt:0];
 }
 
--(void)setExperimentName:(NSString*) expName{
-    name = expName;
-    NSLog(@"%@", name);
+
+-(void)updateCurrentItem{
+    if ([instance.currentItem intValue] < [instance.items count] - 1){
+        int value = [instance.currentItem intValue];
+        instance.currentItem = [NSNumber numberWithInt:value + 1];
+    }
+    else{
+        instance.currentItem = [NSNumber numberWithInt:-1];
+    }
 }
+
+
 
 @end

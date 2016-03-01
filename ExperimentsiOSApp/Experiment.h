@@ -14,14 +14,17 @@
     NSString *name;
     NSString *description;
     NSString *createdBy;
-    NSDictionary *items; 
+    NSArray *items;
+    NSNumber *currentItem;
 }
 
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,retain)NSString *description;
 @property(nonatomic,retain)NSString *createdBy;
-@property(nonatomic,retain)NSDictionary *items;
+@property(nonatomic,retain)NSArray *items;
+@property(nonatomic,retain)NSNumber *currentItem;
 
 +(Experiment*)getInstance;
 -(void)getExperimentInfo:(NSString*) APIUrl;
+-(void)updateCurrentItem;
 @end

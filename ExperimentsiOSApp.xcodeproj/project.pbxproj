@@ -61,7 +61,6 @@
 		CACF57191C7F5F240083C0B1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACF57181C7F5F240083C0B1 /* CoreData.framework */; };
 		CACF571B1C7F5F4E0083C0B1 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACF571A1C7F5F4E0083C0B1 /* Social.framework */; };
 		CACF571D1C7F5F530083C0B1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACF571C1C7F5F530083C0B1 /* Accounts.framework */; };
-		CACF57201C7F60D60083C0B1 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF571F1C7F60D60083C0B1 /* TweetViewController.m */; };
 		CACF57221C7F61480083C0B1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACF57211C7F61480083C0B1 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,8 +142,6 @@
 		CACF57181C7F5F240083C0B1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CACF571A1C7F5F4E0083C0B1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		CACF571C1C7F5F530083C0B1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		CACF571E1C7F60D60083C0B1 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
-		CACF571F1C7F60D60083C0B1 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		CACF57211C7F61480083C0B1 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -238,6 +235,7 @@
 		CA8D64261C7E2B81004B6D80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CACF57211C7F61480083C0B1 /* CoreText.framework */,
 				CACF57121C7F5EC70083C0B1 /* Security.framework */,
 				CACF57141C7F5EDF0083C0B1 /* SystemConfiguration.framework */,
 				CACF57161C7F5F030083C0B1 /* Twitter.framework */,
@@ -284,8 +282,6 @@
 				CAC424F91C77633E00FAC9B2 /* Info.plist */,
 				CAC424F61C77633E00FAC9B2 /* LaunchScreen.storyboard */,
 				CACF56F51C7F125B0083C0B1 /* Main.storyboard */,
-				CACF571E1C7F60D60083C0B1 /* TweetViewController.h */,
-				CACF571F1C7F60D60083C0B1 /* TweetViewController.m */,
 				CAC424EC1C77633E00FAC9B2 /* AppDelegate.m */,
 				CAC424F41C77633E00FAC9B2 /* Assets.xcassets */,
 			);
@@ -321,7 +317,6 @@
 		CAC424DC1C77633E00FAC9B2 = {
 			isa = PBXGroup;
 			children = (
-				CACF57211C7F61480083C0B1 /* CoreText.framework */,
 				CAC424E71C77633E00FAC9B2 /* ExperimentsiOSApp */,
 				CAC424E61C77633E00FAC9B2 /* Products */,
 			);
@@ -475,7 +470,6 @@
 				CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */,
 				CA8D64541C7E2CCE004B6D80 /* svmWrapper.mm in Sources */,
 				CACF57001C7F54DC0083C0B1 /* ExperimentItemViewController.m in Sources */,
-				CACF57201C7F60D60083C0B1 /* TweetViewController.m in Sources */,
 				CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */,
 				CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */,
 				CAC424EA1C77633E00FAC9B2 /* main.m in Sources */,

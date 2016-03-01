@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "YTPlayerView.h"
+#import "Experiment.h"
+#import <TwitterKit/TwitterKit.h>
 
 @interface ExperimentItemViewController : UIViewController
 @property(nonatomic, strong) IBOutlet YTPlayerView *playerView;
