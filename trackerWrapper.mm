@@ -134,6 +134,13 @@ using namespace cv;
  */
 -(void) outputEmotion
 {
+    // Output these values to the screen
+    for (int i = 0; i < 8; i++){
+        double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
+        NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
+        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], predPercent];
+        NSLog(@"%@ : %@", emotionString, predPercent);
+    }
 }
 
 /*!
@@ -146,12 +153,10 @@ using namespace cv;
     // Obtain data from the face tracker model
     cv::Mat shape = model._shape;
     cv::Mat visi = model._clm._visi[model._clm.GetViewIdx()];
-    
-    
+
     int i,n = shape.rows/2; cv::Point p1,p2; cv::Scalar c;
     
     c = CV_RGB(255,0,0);
-    
     
     for(i = 0; i < tri.rows; i++){
         if(visi.at<int>(tri.at<int>(i,0),0) == 0 ||
@@ -196,7 +201,7 @@ using namespace cv;
  
  @discussion This method is used to draw the triangulation, connections, and the individual points obtained from the face tracker model
  */
--(void)track
+-(void)trackClassify
 {
     const char *trainRangePathString = [trainRangePath cStringUsingEncoding:NSASCIIStringEncoding];
     
@@ -210,31 +215,48 @@ using namespace cv;
     // If successful tracking - draw the points and possibly classify
     if(model.Track(gray,wSize,fpd,nIter,clamp,fTol,fcheck) == 0) {
         
-        [self draw];
         failed = false;
         
-        // Only executed if classification is enabled
-        if (classify){
-            // Convert the tracking data to the appropriate distance measures
-            vect2test(model._shape, test);
-            
-            // Perform a PCA projection to produce features
-            pca_project(test, eigv, mu, sigma, eigsize, feat);
-            
-            scaledValues = [svm scaleData:trainRangePathString test:feat];
-            predictedValues = [svm predictData:scaledValues];
-            
-            // Output FPS and prediction values to the screen
-            [self outputEmotion];
-            
-        }
+        // Convert the tracking data to the appropriate distance measures
+        vect2test(model._shape, test);
         
-        // If unsuccessful tracking - reset the model
+        // Perform a PCA projection to produce features
+        pca_project(test, eigv, mu, sigma, eigsize, feat);
+        
+        scaledValues = [svm scaleData:trainRangePathString test:feat];
+        predictedValues = [svm predictData:scaledValues];
+        
+        // Output FPS and prediction values to the screen
+        [self outputEmotion];
+    // If unsuccessful tracking - reset the model
     }else{
         [self resetModel];
         failed = true;
     }
 }
+
+
+-(void)trackPreview{
+    
+    if(failed) {
+        wSize = wSize2;
+    } else {
+        wSize = wSize1;
+    }
+    
+    // If successful tracking - draw the points and possibly classify
+    if(model.Track(gray,wSize,fpd,nIter,clamp,fTol,fcheck) == 0) {
+        
+        [self draw];
+        failed = false;
+    }else{
+        [self resetModel];
+        failed = true;
+    }
+}
+
+
+
 
 /*!
  @brief Outputs current frames per second value to screen
@@ -521,7 +543,7 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     return;
 }
 
--(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer
+-(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer trackIndicator:(int) trackIndicator
 {
     
     CVPixelBufferLockBaseAddress(imageBuffer,0);
@@ -547,7 +569,12 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     cv::flip(im,im,1);
     cv::cvtColor(im,gray,CV_BGR2GRAY);
     
-    [self track];
+    if (trackIndicator==0){
+        [self trackPreview];
+    }
+    else{
+        [self trackClassify];
+    }
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     

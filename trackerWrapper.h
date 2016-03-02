@@ -60,7 +60,7 @@
  
  @return UIImage A single processed frame from the buffer, ready for display
  */
--(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer;
+-(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer trackIndicator:(int)trackIndicator;
 
 
 @end
