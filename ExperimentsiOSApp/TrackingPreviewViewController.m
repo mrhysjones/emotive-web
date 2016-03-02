@@ -128,6 +128,10 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     [self.tracker resetModel];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [self.session stopRunning];
+}
+
 
 
 
