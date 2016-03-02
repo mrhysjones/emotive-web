@@ -76,7 +76,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Experiment finished" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQe-eg-8Oz">
                                 <rect key="frame" x="184" y="281" width="233" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -102,22 +102,9 @@
                     <view key="view" contentMode="scaleToFill" id="OQd-Ia-Emd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcu-or-cw0" customClass="YTPlayerView">
-                                <rect key="frame" x="20" y="149" width="560" height="292"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gcu-or-cw0" firstAttribute="centerX" secondItem="OQd-Ia-Emd" secondAttribute="centerX" id="Arh-Tg-ucG"/>
-                            <constraint firstAttribute="trailing" secondItem="gcu-or-cw0" secondAttribute="trailing" constant="20" id="B7H-yQ-EIk"/>
-                            <constraint firstItem="gcu-or-cw0" firstAttribute="centerY" secondItem="OQd-Ia-Emd" secondAttribute="centerY" id="FYg-ao-hsa"/>
-                            <constraint firstItem="gcu-or-cw0" firstAttribute="leading" secondItem="OQd-Ia-Emd" secondAttribute="leading" constant="20" id="TBE-D4-XxR"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="playerView" destination="gcu-or-cw0" id="brC-17-huc"/>
                         <segue destination="NlE-YV-RLx" kind="show" identifier="experimentEndSegue" id="t38-V8-HOl"/>
                     </connections>
                 </viewController>
@@ -287,7 +274,6 @@
         <!--Scan QR Code-->
         <scene sceneID="ZgE-RK-gkD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bNL-HS-YQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Scan QR Code" id="IXi-eX-Kle" customClass="QRCodeReaderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kNd-bU-z1Z"/>
@@ -322,6 +308,7 @@
                         <segue destination="UKV-Ai-bTL" kind="show" identifier="QRCodeSegue" id="0UY-NB-wQp"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNL-HS-YQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1165" y="19"/>
         </scene>

@@ -117,7 +117,7 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
         CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
         
         // start tracking data and get image of tracked face
-        UIImage *trackedImage = [self.tracker trackWithCVImageBufferRef:imageBuffer];
+        UIImage *trackedImage = [self.tracker trackWithCVImageBufferRef:imageBuffer trackIndicator:0];
         
         // Show modified image on video view
         [self.videoView performSelectorOnMainThread:@selector(setImage:) withObject:trackedImage waitUntilDone:YES];
