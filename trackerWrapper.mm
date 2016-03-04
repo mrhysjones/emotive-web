@@ -40,8 +40,6 @@ using namespace cv;
     imageConversion *imageConverter;
     svmWrapper* svm;
     
-    bool classify;
-    
     int eigsize;
     std::vector<double> test, feat, mu, sigma, eigv[18];
     NSString *trainRangePath, *muPath, *sigmaPath, *wtPath, *fpsString;
@@ -50,6 +48,9 @@ using namespace cv;
     
 }
 
+/**
+ *  Load in the information required for face tracking model and SVM model
+ */
 -(void)initialiseModel
 {
     // Paths for supporting files required by face tracker library
@@ -80,6 +81,9 @@ using namespace cv;
     
 }
 
+/**
+ *  Set the FPS reference value, face tracker parameters, file paths, emotion names, and PCA information
+ */
 -(void)initialiseValues
 {
     // Keeps track of previous time to use for FPS calculation
@@ -127,33 +131,30 @@ using namespace cv;
     classify = false;
 }
 
-/*!
- @brief Output predicted values for each emotion on frame
- 
- @discussion This method is used to draw each emotion and prediction onto the screen
+
+/**
+ *  Output the predicted values for each emotion
  */
 -(void) outputEmotion
 {
-    // Output these values to the screen
+    // For each class, log the emotion and the confidence value
     for (int i = 0; i < 8; i++){
         double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
         NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
-        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@", emotions[i], predPercent];
-        NSLog(@"%@ : %@", emotionString, predPercent);
+        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@ %%", emotions[i], predPercent];
+        NSLog(@"%@", emotionString);
     }
 }
 
-/*!
- @brief Draws the geometry of tracked face
- 
- @discussion This method is used to draw the triangulation, connections, and the individual points obtained from the face tracker model
+/**
+ *  Draw geometry of face onto the input image including points, and triangulation
  */
 -(void) draw
 {
     // Obtain data from the face tracker model
     cv::Mat shape = model._shape;
     cv::Mat visi = model._clm._visi[model._clm.GetViewIdx()];
-
+    
     int i,n = shape.rows/2; cv::Point p1,p2; cv::Scalar c;
     
     c = CV_RGB(255,0,0);
@@ -196,10 +197,9 @@ using namespace cv;
         c = CV_RGB(0,255,0); cv::circle(im,p1,2,c);
     }
 }
-/*!
- @brief Runs face tracker and conditionally runs the emotion classification
- 
- @discussion This method is used to draw the triangulation, connections, and the individual points obtained from the face tracker model
+
+/**
+ *  Perform face tracking, and use the resultant data to run classification for the 8 classes. Does not do any drawing
  */
 -(void)trackClassify
 {
@@ -228,14 +228,16 @@ using namespace cv;
         
         // Output FPS and prediction values to the screen
         [self outputEmotion];
-    // If unsuccessful tracking - reset the model
+        // If unsuccessful tracking - reset the model
     }else{
         [self resetModel];
         failed = true;
     }
 }
 
-
+/**
+ *  Perform face tracking, and outputs results to the frames - no classification
+ */
 -(void)trackPreview{
     
     if(failed) {
@@ -255,16 +257,12 @@ using namespace cv;
     }
 }
 
-
-
-
-/*!
- @brief Outputs current frames per second value to screen
- 
- @discussion Uses the mach_time to keep track of current/previous times, and uses these values to produce an estimate for FPS
+/**
+ *  Outputs the current frames per second value to the image frame
  */
-
 -(void)outputFPS{
+    
+    // Calculate FPS based on current time and reference time
     uint64_t currTime = mach_absolute_time();
     double timeInSeconds = machTimeToSecs(currTime - prevTime);
     prevTime = currTime;
@@ -272,22 +270,30 @@ using namespace cv;
     fpsString =
     [NSString stringWithFormat:@"FPS = %3.2f",
      fps];
+    
+    // Use OpenCV to add the FPS label to the image
     cv::putText(im, [fpsString UTF8String],
                 cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX,
                 0.8, cv::Scalar::all(0));
 }
 
+/**
+ *  Resets the face tracking
+ */
 -(void)resetModel
 {
     model.FrameReset();
 }
 
--(void)classify
-{
-    classify ^= true;
-}
-
 // Write a vector of features to a specific file
+
+
+/**
+ *  Write vector of features to a specific file
+ *
+ *  @param feat     Array of features
+ *  @param filename File name to save features to
+ */
 void featfiler (std::vector<double> &feat, NSString * filename)
 {
     NSString *fStr = [[NSString alloc]init];
@@ -312,6 +318,18 @@ void featfiler (std::vector<double> &feat, NSString * filename)
  @param feat    A vector containing a reduced number of features
  
  */
+
+
+/**
+ *  Principle component analysis on features
+ *
+ *  @param test    Vector of distance measures from face tracker
+ *  @param eigv    Vector of the principal component variances
+ *  @param mu      Vector of the estimated means
+ *  @param sigma   Vector of the sums
+ *  @param eigsize Number of principal component variances from training phase
+ *  @param feat    A vector containing a reduce number of features
+ */
 void pca_project (std::vector<double> &test, std::vector<double> eigv[],
                   std::vector<double> mu, std::vector<double> sigma, int eigsize, std::vector<double> &feat)
 {
@@ -329,26 +347,24 @@ void pca_project (std::vector<double> &test, std::vector<double> eigv[],
     
 }
 
-/*!
- @brief Distance between two points
- 
- @discussion Computes distance between two points - used to obtain distance measures
- 
- @param n1  First point
- @param n2  Second point
+/**
+ *  Utility method to calculate distance between two points for distance measures
+ *
+ *  @param n1 Point 1
+ *  @param n2 Point 2
+ *
+ *  @return Distance between point 1 and point 2
  */
 float distance_between(Point2d n1, Point2d n2)
 {
     return sqrt(((n1.x - n2.x)*(n1.x - n2.x)) + ((n1.y - n2.y)*(n1.y - n2.y)));
 }
 
-/*!
- @brief Produces distance measures from tracking points
- 
- @discussion This method will produce 86 new distance measures from the points obtained by the face tracker.
- 
- @param vect    Vector of points obtained from face tracker
- @param test    Vector of computed distance measures
+/**
+ *  Compute distance measures using tracked points
+ *
+ *  @param vect Vector of points obtained from face tracker
+ *  @param test Vector of computed distance measures
  */
 void vect2test (cv::Mat &vect, std::vector<double> &test)
 {
@@ -475,13 +491,11 @@ void vect2test (cv::Mat &vect, std::vector<double> &test)
     return;
 }
 
-/*!
- @brief Reads a file into a vector
- 
- @discussion This method is used to read in values from a file into a vector. Currently used for obtaining mu and sigma
- 
- @param filename    Filepath to read
- @param vect    A vector containing read in values
+/**
+ *  File to vector
+ *
+ *  @param filename File to read
+ *  @param vect     A vector containing read in values
  */
 void file2vect (const char* filename, std::vector<double> &vect)
 {
@@ -507,14 +521,13 @@ void file2vect (const char* filename, std::vector<double> &vect)
     infile.close();
     
 }
-/*!
- @brief Reads eigenvalues from file
- 
- @discussion This method is used to read in eigenvalues from a file into a vector. It also obtains the number of eigenvalues
- 
- @param filename    Filepath to read
- @param eigv    A vector containing read in values
- @param eigsize Number of eigen vectors
+
+/**
+ *  Read eigenvalues from file in particular format
+ *
+ *  @param filename File to read from
+ *  @param eigv     A vector containing eigenvalues
+ *  @param eigsize  Number of values
  */
 void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
 {
@@ -543,6 +556,14 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     return;
 }
 
+/**
+ *  Track and possibly classify image frames using image buffer
+ *
+ *  @param imageBuffer    Buffer of images from camera
+ *  @param trackIndicator Integer to indicate if you want to draw tracker output (0) /classify tracker output (1)
+ *
+ *  @return <#return value description#>
+ */
 -(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer trackIndicator:(int) trackIndicator
 {
     
@@ -569,6 +590,7 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     cv::flip(im,im,1);
     cv::cvtColor(im,gray,CV_BGR2GRAY);
     
+    // Check indicator and call appropriate method
     if (trackIndicator==0){
         [self trackPreview];
     }
@@ -583,13 +605,12 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     
 }
 
-/*!
- @brief Converts mach_time into seconds
- 
- @discussion This method puts the mach_time into the human readable form of seconds using the mach_timebase
- 
- @param time A mach_time value
- @return Seconds representation of input
+/**
+ *  Convert mach_time into human readable form of seconds
+ *
+ *  @param time mach_time
+ *
+ *  @return Seconds representation of mach_time
  */
 static double machTimeToSecs(uint64_t time)
 {

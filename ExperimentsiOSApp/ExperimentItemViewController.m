@@ -28,6 +28,10 @@
     [self createAndRunNewSession];
 }
 
+
+/**
+ *  Loads the initial experiment item with the appropriate view
+ */
 -(void)loadFirstExperiment{
     Experiment* exp = [Experiment getInstance];
     NSDictionary* firstItemData = exp.items[0];
@@ -50,7 +54,11 @@
     }
 }
 
-
+/**
+ *  Creates a TWTRTweetView and adds to view
+ *
+ *  @param data Tweet URL
+ */
 -(void) loadTweetView:(NSString*) data{
     // Clear sub view
     [self clearSubViews];
@@ -73,6 +81,11 @@
 }
 
 
+/**
+ *  Creates a UIWebView and adds to view
+ *
+ *  @param data URL to load web view with
+ */
 -(void) loadWebView:(NSString*) data{
     
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -89,18 +102,28 @@
     NSLog(@"Now viewing web page with URL - %@", data);
 }
 
+/**
+ *  Creates a YTPlayerView and adds to view
+ *
+ *  @param data YouTube video ID
+ */
 -(void) loadYoutubeView:(NSString*) data{
     [self clearSubViews];
     YTPlayerView *youtubeView = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     [self.view addSubview:youtubeView];
     [youtubeView loadWithVideoId:data];
+    
     NSLog(@"Now viewing YouTube video with ID - %@", data);
 }
 
-
+/**
+ *  Load in the next experiment item/finish experiment
+ *
+ *  @param time Number of seconds to wait before load of next item (based on display time of previous item)
+ */
 - (void)loadNextExperiment:(int) time{
-    
+    // Check if there are more items to load
     Experiment* exp = [Experiment getInstance];
     [exp updateCurrentItem];
     int currentIndex =  [exp.currentItem intValue];
@@ -111,6 +134,7 @@
         NSString* itemTimeString = itemData[@"displaySeconds"];
         int itemTime = [itemTimeString intValue];
         
+        // Wait until time is up before loading appropriate view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             if ([itemType  isEqual: @"twitter"]){
                 [self loadTweetView:itemDatasource];
@@ -127,36 +151,50 @@
         });
     }
     else{
+        // If no experiment items left, still wait for display time, and then perform segue to end of experiment view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"experimentEndSegue" sender:self];
         });
     }
 }
-
+/**
+ *  Clears all subviews i.e. YTPlayerView/UIWebView/TWTRTweetView from view
+ */
 -(void)clearSubViews{
+    
     for (UIView *subView in self.view.subviews)
     {
         [subView removeFromSuperview];
     }
+    
+    
 }
 
+
+/**
+ *  Return Tweet ID from a full Tweet URL
+ *
+ *  @param url Full Tweet URL in the form twitter.com/user/status/tweetID
+ *
+ *  @return Tweet ID
+ */
 -(NSString*) getTweetIDFromURL:(NSString*) url{
     NSArray* urlComponents = [url componentsSeparatedByString: @"/"];
     NSString* tweetID = [urlComponents objectAtIndex:([urlComponents count] -1)];
     return tweetID;
 }
 
-/*!
- @brief Sets up the input/output required for the app to work
- 
- @discussion This method is used to set up a capture session with the front camera, to set up the output video, and also to handle the video buffer
- 
+
+/**
+ *  Set up the input/output required for this capture session
  */
 - (void) createAndRunNewSession
 {
+    // Set up AVCaptureSession
     self.session = [[AVCaptureSession alloc] init];
     self.session.sessionPreset = AVCaptureSessionPresetMedium;
     
+    // Set up camera
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     self.device = [self findCamera:AVCaptureDevicePositionFront];
@@ -171,6 +209,7 @@
     self.input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:nil];
     
     
+    // Set up how to handle video frames from camera
     self.output = [[AVCaptureVideoDataOutput alloc] init];
     self.output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt: kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     self.output.alwaysDiscardsLateVideoFrames = YES;
@@ -191,12 +230,12 @@
     [self.session startRunning];
 }
 
-/*!
- @brief Finds the front/back camera from the available devices
- 
- @discussion This method is called to look for all available capture devices, and to find the camera with specified position
- 
- @return AVCaptureDevice    Camera if found, nil otherwise
+/**
+ *  Finds camera with particular position
+ *
+ *  @param pos AVCaptureDevicePosition
+ *
+ *  @return AVCaptureDevice if found
  */
 - (AVCaptureDevice *) findCamera:(AVCaptureDevicePosition) pos
 {
@@ -211,12 +250,13 @@
     }
     return camera;
 }
- 
 
-/*!
- @brief Applies processsing to the output from the camera
- 
- @discussion This method will take a sample from the buffer, and will apply the tracking methods to this sample, before adding the resultant image to the video view
+/**
+ *  Handle sample buffer - delegate method
+ *
+ *  @param captureOutput Capture output object
+ *  @param sampleBuffer  Video frame data
+ *  @param connection    Connection from which the video was received
  */
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
@@ -227,8 +267,15 @@
         [self.tracker trackWithCVImageBufferRef:imageBuffer trackIndicator:1];
     }
 }
-
+/**
+ *  Handles the stopping of AVCaptureSession and clearing of subviews at end of experiment
+ *
+ *  @param segue  Segue to make
+ *  @param sender Sender
+ */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [self clearSubViews];
+    
     [self.session stopRunning];
 }
 

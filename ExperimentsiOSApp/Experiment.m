@@ -17,6 +17,11 @@
 
 static Experiment *instance = nil;
 
+/**
+ *  Gets/creates singleton instance of Experiment class
+ *
+ *  @return Experiment instance
+ */
 +(Experiment *)getInstance
 {
     @synchronized(self)
@@ -29,6 +34,11 @@ static Experiment *instance = nil;
     return instance;
 }
 
+/**
+ *  Retrieves experiment information from API request, store in class variables
+ *
+ *  @param APIUrl API URL for experiment to retrieve
+ */
 -(void)getExperimentInfo:(NSString*) APIUrl{
     NSMutableURLRequest *request =
     [NSMutableURLRequest requestWithURL:[NSURL
@@ -56,7 +66,9 @@ static Experiment *instance = nil;
     instance.currentItem = [NSNumber numberWithInt:0];
 }
 
-
+/**
+ *  Keeps track of current item being looked at in experiment 
+ */
 -(void)updateCurrentItem{
     if ([instance.currentItem intValue] < [instance.items count] - 1){
         int value = [instance.currentItem intValue];

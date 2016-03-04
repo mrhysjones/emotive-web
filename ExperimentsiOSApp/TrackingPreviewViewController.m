@@ -31,12 +31,12 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     
 }
 
-/*!
- @brief Finds the front/back camera from the available devices
- 
- @discussion This method is called to look for all available capture devices, and to find the camera with specified position
- 
- @return AVCaptureDevice    Camera if found, nil otherwise
+/**
+ *  Finds camera with particular position
+ *
+ *  @param pos AVCaptureDevicePosition
+ *
+ *  @return AVCaptureDevice if found
  */
 - (AVCaptureDevice *) findCamera:(AVCaptureDevicePosition) pos
 {
@@ -52,11 +52,8 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     return camera;
 }
 
-/*!
- @brief Sets up the input/output required for the app to work
- 
- @discussion This method is used to set up a capture session with the front camera, to set up the output video, and also to handle the video buffer
- 
+/**
+ *  Set up the input/output required for this capture session
  */
 - (void) createAndRunNewSession
 {
@@ -106,10 +103,12 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     [self.tracker resetModel];
 }
 
-/*!
- @brief Applies processsing to the output from the camera
- 
- @discussion This method will take a sample from the buffer, and will apply the tracking methods to this sample, before adding the resultant image to the video view
+/**
+ *  Handle sample buffer - delegate method
+ *
+ *  @param captureOutput Capture output object
+ *  @param sampleBuffer  Video frame data
+ *  @param connection    Connection from which the video was received
  */
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
@@ -124,10 +123,21 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
     }
 }
 
+/**
+ *  Reset face tracker on button
+ *
+ *  @param sender Button press
+ */
 - (IBAction)resetTracker:(id)sender {
     [self.tracker resetModel];
 }
 
+/**
+ *  Stop AVCaptureSession before segue to start of experiment
+ *
+ *  @param segue  Segue to make
+ *  @param sender Sender
+ */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [self.session stopRunning];
 }

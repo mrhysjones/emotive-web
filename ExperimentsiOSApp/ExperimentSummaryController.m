@@ -15,13 +15,20 @@
 
 NSString *APIUrl;
 
+/**
+ *  Format API URL with http://
+ *
+ *  @param qrURL URL read by QR code
+ */
 -(void)setAPIUrl:(NSString*) qrURL{
     APIUrl = [@"http://" stringByAppendingString:qrURL];
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    // Load experiment details stored in Experiment model
     Experiment *exp = [Experiment getInstance];
     _nameLabel.text = exp.name;
     _descLabel.text = exp.description;

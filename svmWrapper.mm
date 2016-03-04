@@ -39,6 +39,14 @@ struct svm_model* model;
 int max_nr_attr = 64;
 
 
+/**
+ *  Scale data to model range
+ *
+ *  @param rangeFile File path to emotion classifier range file
+ *  @param test Test data to scale
+ *
+ *  @return Scaled test data
+ */
 -(NSMutableArray*)scaleData:(const char*) rangeFile test:(std::vector<double>) test{
     
     int i, index;
@@ -76,8 +84,8 @@ int max_nr_attr = 64;
         feature_min[index]=min(feature_min[index],value);
         
         next_index=index+1;
-    
-    
+        
+        
         for(i=next_index;i<=max_index;i++)
         {
             feature_max[i]=max(feature_max[i],0);
@@ -145,6 +153,13 @@ int max_nr_attr = 64;
 }
 
 
+/**
+ *  Perform emotion classification on scaled values
+ *
+ *  @param scaledVals Scaled PCA values from tracker
+ *
+ *  @return Emotion predictions for classes within emotion classifier
+ */
 -(NSMutableArray*)predictData:(NSMutableArray*) scaledVals{
     NSMutableArray *predictions = [[NSMutableArray alloc] init];
     
@@ -192,18 +207,14 @@ int max_nr_attr = 64;
     return predictions;
 }
 
-
-/*!
- @brief Scales a single feature
- 
- @discussion Using the feature_max and feature_min arrays, for a given value at a particular feature index, this method will return a new scaled value to be used by the prediction function
- 
- @param index   Feature index
- @param value   Original value of feature
- 
- @return NSNumber   Scaled value of feature
+/**
+ *  Scale a single feature using feature arrays at a particular index
+ *
+ *  @param index Feature index
+ *  @param value Original value of feature
+ *
+ *  @return Scaled value of feature
  */
-
 -(NSNumber*)output:(NSNumber*) index value:(NSNumber*) value{
     int idx = [index intValue];
     double val = [value doubleValue];
@@ -224,7 +235,11 @@ int max_nr_attr = 64;
     
 }
 
-
+/**
+ *  Loads the SVM model using svm_load_model
+ *
+ *  @param modelFile File name for model
+ */
 -(void)loadModel:(const char *)modelFile{
     if((model=svm_load_model(modelFile))==0)
     {
@@ -234,18 +249,15 @@ int max_nr_attr = 64;
 }
 
 
-/*!
- @brief Cleans up during scaling
- 
- @discussion If scaling process fails, this function is called to deallocate memory and to close any open files
- 
- @param fp_restore  A vector file to scale (currently passed as NULL)
- @param fp  Vector scaling factors file
- @param msg Message to output to give reasoning for failure
- 
- @return int    -1 when complete
+/**
+ *  Clean up during scaling if process fails
+ *
+ *  @param fp_restore A vector file to scale
+ *  @param fp         Vector scaling factors file
+ *  @param msg        Error message for why scaling failed
+ *
+ *  @return -1
  */
-
 int clean_up(FILE *fp_restore, FILE *fp, const char* msg)
 {
     fprintf(stderr,	"%s", msg);
