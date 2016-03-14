@@ -127,14 +127,18 @@ using namespace cv;
 
 
 /**
- *  Output the predicted values for each emotion
+ *  Output the predicted values for each emotion and tracking data to Result instance
  */
--(void) outputEmotion
+-(void) outputData
 {
+    // Convert raw facial landmarks from std::vector<double> to NSMutableArray
     NSMutableArray *trackingPoints = [self convertTrackingPoints];
     NSDictionary *trackingData = [[NSDictionary alloc] initWithObjectsAndKeys:trackingPoints, @"data", nil];
+    
+    // Manually put emotion predictions into key-value pairs
     NSDictionary *emotionData = [[NSDictionary alloc] initWithObjectsAndKeys:predictedValues[0], @"angry", predictedValues[1], @"contempt", predictedValues[2], @"disgust", predictedValues[3], @"fear", predictedValues[4], @"happy", predictedValues[5], @"sadness", predictedValues[6], @"surprise", predictedValues[7], @"neutral", nil];
     
+    // Append data to Result instance
     [res addTrackingData:trackingData];
     [res addEmotionData:emotionData];
 }
@@ -219,8 +223,8 @@ using namespace cv;
         scaledValues = [svm scaleData:trainRangePathString test:feat];
         predictedValues = [svm predictData:scaledValues];
         
-        // Output prediction values to Result class
-        [self outputEmotion];
+        // Output values to Result class
+        [self outputData];
         // If unsuccessful tracking - reset the model
     }else{
         [self resetModel];
