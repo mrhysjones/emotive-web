@@ -34,7 +34,12 @@
  */
 -(void)loadFirstExperiment{
     Experiment* exp = [Experiment getInstance];
+    Result* res = [Result getInstance];
+    [res setExperimentID:exp.experimentID];
+    
     NSDictionary* firstItemData = exp.items[0];
+    [res setItemID:firstItemData[@"_id"]];
+    
     NSString* itemType = firstItemData[@"dataType"];
     NSString* itemData = firstItemData[@"data"];
     NSString* itemTimeString = firstItemData[@"displaySeconds"];
@@ -77,7 +82,6 @@
             NSLog(@"Error loading Tweet: %@", [error localizedDescription]);
         }
     }];
-    NSLog(@"Now viewing Tweet with ID - %@", tweetID);
 }
 
 
@@ -99,7 +103,6 @@
     [webview loadRequest:request];
     
     [self.view addSubview:webview];
-    NSLog(@"Now viewing web page with URL - %@", data);
 }
 
 /**
@@ -113,8 +116,6 @@
     
     [self.view addSubview:youtubeView];
     [youtubeView loadWithVideoId:data];
-    
-    NSLog(@"Now viewing YouTube video with ID - %@", data);
 }
 
 /**
@@ -125,10 +126,12 @@
 - (void)loadNextExperiment:(int) time{
     // Check if there are more items to load
     Experiment* exp = [Experiment getInstance];
+    Result* res = [Result getInstance];
     [exp updateCurrentItem];
     int currentIndex =  [exp.currentItem intValue];
     if (currentIndex != -1){
         NSDictionary* itemData = exp.items[currentIndex];
+        
         NSString* itemType = itemData[@"dataType"];
         NSString* itemDatasource = itemData[@"data"];
         NSString* itemTimeString = itemData[@"displaySeconds"];
@@ -136,7 +139,10 @@
         
         // Wait until time is up before loading appropriate view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            if ([itemType  isEqual: @"twitter"]){
+            
+            [res postCurrentData];
+            [res setItemID:itemData[@"_id"]];
+            if ([itemType isEqual: @"twitter"]){
                 [self loadTweetView:itemDatasource];
                 [self loadNextExperiment:itemTime];
             }
@@ -153,6 +159,7 @@
     else{
         // If no experiment items left, still wait for display time, and then perform segue to end of experiment view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [res postCurrentData];
             [self performSegueWithIdentifier:@"experimentEndSegue" sender:self];
         });
     }
@@ -250,6 +257,7 @@
     }
     return camera;
 }
+
 
 /**
  *  Handle sample buffer - delegate method

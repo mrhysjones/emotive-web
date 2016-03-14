@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YTPlayerView.h"
 #import "Experiment.h"
+#import "Result.h"
 #import <TwitterKit/TwitterKit.h>
 #import <opencv2/videoio/cap_ios.h>
 #import <opencv2/imgproc.hpp>

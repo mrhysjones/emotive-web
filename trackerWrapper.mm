@@ -28,8 +28,6 @@ using namespace cv;
     int fpd;
     bool show;
     
-    uint64_t prevTime;
-    
     int nIter;
     double clamp,fTol;
     
@@ -44,8 +42,8 @@ using namespace cv;
     std::vector<double> test, feat, mu, sigma, eigv[18];
     NSString *trainRangePath, *muPath, *sigmaPath, *wtPath, *fpsString;
     NSArray *emotions;
-    NSMutableArray *scaledValues, *predictedValues;
-    
+    NSMutableArray *scaledValues, *predictedValues, *trackerValues;
+    Result* res;
 }
 
 /**
@@ -79,6 +77,9 @@ using namespace cv;
     // Initialise the image converter
     imageConverter = [[imageConversion alloc] init];
     
+    // Initialise result model
+    res = [Result getInstance];
+    
 }
 
 /**
@@ -86,9 +87,6 @@ using namespace cv;
  */
 -(void)initialiseValues
 {
-    // Keeps track of previous time to use for FPS calculation
-    prevTime = mach_absolute_time();
-    
     // Face tracker parameters
     wSize1.resize(1);
     wSize2.resize(3);
@@ -127,8 +125,6 @@ using namespace cv;
     file2vect(muPathString, mu);
     file2vect(sigmaPathString, sigma);
     
-    // By default, classification is off
-    classify = false;
 }
 
 
@@ -137,13 +133,12 @@ using namespace cv;
  */
 -(void) outputEmotion
 {
-    // For each class, log the emotion and the confidence value
-    for (int i = 0; i < 8; i++){
-        double prediction = [[predictedValues objectAtIndex:i] doubleValue] * 100;
-        NSString *predPercent = [NSString stringWithFormat:@"%2.4f", prediction];
-        NSString *emotionString = [NSString stringWithFormat:@"%@ = %@ %%", emotions[i], predPercent];
-        NSLog(@"%@", emotionString);
-    }
+    NSMutableArray *trackingPoints = [self convertTrackingPoints];
+    NSDictionary *trackingData = [[NSDictionary alloc] initWithObjectsAndKeys:trackingPoints, @"data", nil];
+    NSDictionary *emotionData = [[NSDictionary alloc] initWithObjectsAndKeys:predictedValues[0], @"angry", predictedValues[1], @"contempt", predictedValues[2], @"disgust", predictedValues[3], @"fear", predictedValues[4], @"happy", predictedValues[5], @"sadness", predictedValues[6], @"surprise", predictedValues[7], @"neutral", nil];
+    
+    [res addTrackingData:trackingData];
+    [res addEmotionData:emotionData];
 }
 
 /**
@@ -226,7 +221,7 @@ using namespace cv;
         scaledValues = [svm scaleData:trainRangePathString test:feat];
         predictedValues = [svm predictData:scaledValues];
         
-        // Output FPS and prediction values to the screen
+        // Output prediction values to Result class
         [self outputEmotion];
         // If unsuccessful tracking - reset the model
     }else{
@@ -258,26 +253,6 @@ using namespace cv;
 }
 
 /**
- *  Outputs the current frames per second value to the image frame
- */
--(void)outputFPS{
-    
-    // Calculate FPS based on current time and reference time
-    uint64_t currTime = mach_absolute_time();
-    double timeInSeconds = machTimeToSecs(currTime - prevTime);
-    prevTime = currTime;
-    double fps = 1.0 / timeInSeconds;
-    fpsString =
-    [NSString stringWithFormat:@"FPS = %3.2f",
-     fps];
-    
-    // Use OpenCV to add the FPS label to the image
-    cv::putText(im, [fpsString UTF8String],
-                cv::Point(30, 30), cv::FONT_HERSHEY_COMPLEX,
-                0.8, cv::Scalar::all(0));
-}
-
-/**
  *  Resets the face tracking
  */
 -(void)resetModel
@@ -305,21 +280,6 @@ void featfiler (std::vector<double> &feat, NSString * filename)
              encoding:NSASCIIStringEncoding error:NULL];
 }
 
-/*!
- @brief Reduce dimensions of features through PCA
- 
- @discussion This method reduce the dimensions of the vector of distance measures acquired from the face tracker model through principle component analysis
- 
- @param test    A single vector of distance measures from the face tracker
- @param eigv    A vector of principal component variances
- @param mu  A vector of the estimated means
- @param sigma   A vector of the sums
- @param eigsize Number of principal component variances from training
- @param feat    A vector containing a reduced number of features
- 
- */
-
-
 /**
  *  Principle component analysis on features
  *
@@ -344,8 +304,22 @@ void pca_project (std::vector<double> &test, std::vector<double> eigv[],
         feat.push_back(sum);
         ++ctr;
     }
-    
 }
+
+
+/**
+ *  Convert std::vector<double> of tracking features to NSMutableArray representation
+ *
+ *  @return NSMutableArray of tracking features
+ */
+-(NSMutableArray*) convertTrackingPoints{
+    NSMutableArray* points = [NSMutableArray array];
+    for (int i = 0; i < test.size();i++){
+        [points addObject:[NSNumber numberWithDouble:test[i]]];
+    }
+    return points;
+}
+
 
 /**
  *  Utility method to calculate distance between two points for distance measures
@@ -562,7 +536,7 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
  *  @param imageBuffer    Buffer of images from camera
  *  @param trackIndicator Integer to indicate if you want to draw tracker output (0) /classify tracker output (1)
  *
- *  @return <#return value description#>
+ *  @return Frame tracked
  */
 -(UIImage *)trackWithCVImageBufferRef:(CVImageBufferRef)imageBuffer trackIndicator:(int) trackIndicator
 {
@@ -600,24 +574,7 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     
-    
     return [imageConverter UIImageFromMat:im];
-    
-}
-
-/**
- *  Convert mach_time into human readable form of seconds
- *
- *  @param time mach_time
- *
- *  @return Seconds representation of mach_time
- */
-static double machTimeToSecs(uint64_t time)
-{
-    mach_timebase_info_data_t timebase;
-    mach_timebase_info(&timebase);
-    return (double)time * (double)timebase.numer /
-    (double)timebase.denom / 1e9;
 }
 
 @end
