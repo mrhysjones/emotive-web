@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0C619D1C87194100EB6428 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619A1C87194100EB6428 /* pca_archive_mu.txt */; };
+		CA0C619E1C87194100EB6428 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619B1C87194100EB6428 /* pca_archive_sigma.txt */; };
+		CA0C619F1C87194100EB6428 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */; };
+		CA2571551C95F84D00DF1C57 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2571541C95F84D00DF1C57 /* Result.m */; };
 		CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7DFD231C7B3FE100DAD5BC /* Experiment.m */; };
 		CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA8D64291C7E2C04004B6D80 /* CLM.cc */; };
 		CA8D643A1C7E2C05004B6D80 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA8D642B1C7E2C04004B6D80 /* FCheck.cc */; };
@@ -65,6 +69,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0C619A1C87194100EB6428 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_mu.txt; sourceTree = SOURCE_ROOT; };
+		CA0C619B1C87194100EB6428 /* pca_archive_sigma.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_sigma.txt; sourceTree = SOURCE_ROOT; };
+		CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_wt.txt; sourceTree = SOURCE_ROOT; };
+		CA2571541C95F84D00DF1C57 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
+		CA2571561C95F87A00DF1C57 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
 		CA7DFD221C7B3FE100DAD5BC /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
 		CA7DFD231C7B3FE100DAD5BC /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 		CA8D64291C7E2C04004B6D80 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLM.cc; path = FaceTrackerLibrary/CLM.cc; sourceTree = SOURCE_ROOT; };
@@ -226,6 +235,9 @@
 		CA8D64251C7E2B76004B6D80 /* Classifier */ = {
 			isa = PBXGroup;
 			children = (
+				CA0C619A1C87194100EB6428 /* pca_archive_mu.txt */,
+				CA0C619B1C87194100EB6428 /* pca_archive_sigma.txt */,
+				CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */,
 				CA8D64411C7E2C1A004B6D80 /* emotions.train.pca.model */,
 				CA8D64421C7E2C1A004B6D80 /* emotions.train.pca.range */,
 			);
@@ -310,6 +322,8 @@
 			children = (
 				CA7DFD221C7B3FE100DAD5BC /* Experiment.h */,
 				CA7DFD231C7B3FE100DAD5BC /* Experiment.m */,
+				CA2571541C95F84D00DF1C57 /* Result.m */,
+				CA2571561C95F87A00DF1C57 /* Result.h */,
 			);
 			name = "Experiment Model";
 			sourceTree = "<group>";
@@ -427,7 +441,10 @@
 				CACF56F71C7F125B0083C0B1 /* Main.storyboard in Resources */,
 				CACF57081C7F5D140083C0B1 /* TwitterKitResources.bundle in Resources */,
 				CA8D644A1C7E2C76004B6D80 /* face.tracker in Resources */,
+				CA0C619D1C87194100EB6428 /* pca_archive_mu.txt in Resources */,
+				CA0C619E1C87194100EB6428 /* pca_archive_sigma.txt in Resources */,
 				CA8D64431C7E2C1A004B6D80 /* emotions.train.pca.model in Resources */,
+				CA0C619F1C87194100EB6428 /* pca_archive_wt.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +477,7 @@
 				CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */,
 				CA8D643E1C7E2C05004B6D80 /* PAW.cc in Sources */,
 				CA8D64781C7E2FBD004B6D80 /* TrackingPreviewViewController.m in Sources */,
+				CA2571551C95F84D00DF1C57 /* Result.m in Sources */,
 				CA8D643A1C7E2C05004B6D80 /* FCheck.cc in Sources */,
 				CA8D643C1C7E2C05004B6D80 /* IO.cc in Sources */,
 				CA8D64581C7E2D13004B6D80 /* imageConversion.mm in Sources */,
