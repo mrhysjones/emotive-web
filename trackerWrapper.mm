@@ -2,15 +2,13 @@
 //  trackerWrapper.m
 //
 //  Created by Tom Hartley on 01/12/2012.
-//  Modified and documented by Matthew Jones on 09/09/2015
+//  Modified and documented by Matthew Jones on 09/09/2015 and 14/03/16
 //  Copyright (c) 2012 Tom Hartley. All rights reserved.
 //
 
 #import "trackerWrapper.h"
-#import <mach/mach_time.h>
 
 using namespace cv;
-
 
 @implementation trackerWrapper {
     int switchVal;
