@@ -9,6 +9,7 @@
 #import "Experiment.h"
 
 @implementation Experiment
+@synthesize experimentID;
 @synthesize name;
 @synthesize description;
 @synthesize createdBy;
@@ -59,6 +60,7 @@ static Experiment *instance = nil;
     
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NULL error:NULL];
     
+    instance.experimentID = dict[@"_id"];
     instance.name = dict[@"name"];
     instance.description = dict[@"description"];
     instance.createdBy = dict[@"createdBy"];

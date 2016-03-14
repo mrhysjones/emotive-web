@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 
 @interface Experiment : NSObject {
-    
+    NSString *experimentID;
     NSString *name;
     NSString *description;
     NSString *createdBy;
     NSArray *items;
     NSNumber *currentItem;
 }
-
+@property(nonatomic,retain)NSString *experimentID;
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,retain)NSString *description;
 @property(nonatomic,retain)NSString *createdBy;

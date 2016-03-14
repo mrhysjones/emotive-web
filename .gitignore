@@ -85,3 +85,7 @@ fastlane/screenshots
 
 
 *.xcbkptlist
+
+*.pbxproj
+
+*.xcbkptlist
