@@ -147,18 +147,13 @@
         // Wait until time is up before loading appropriate view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             
-            // Save result frames to phone
-            NSMutableArray* resultFrames = [res videoFrames];
-            UIImage *firstFrame = [resultFrames objectAtIndex:0];
-            NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:320 andHeight:480];
-            self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
-            NSLog(@"%f", firstFrame.size.width);
-            NSLog(@"%f",firstFrame.size.height);
-            [self.movieMaker createMovieFromImages:[resultFrames copy] withCompletion:^(NSURL *fileURL){
-                NSLog(@"%@", fileURL);
-            }];
+            // Save frames involved in experiment item as video
+            [self saveVideoFrames:res];
             
+            // Post results to API
             [res postCurrentData];
+            
+            // Set experiment to next item
             [res setItemID:itemData[@"_id"]];
             if ([itemType isEqual: @"twitter"]){
                 [self loadTweetView:itemDatasource];
@@ -177,7 +172,13 @@
     else{
         // If no experiment items left, still wait for display time, and then perform segue to end of experiment view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            // Save frames involved in last experiment item as video
+            [self saveVideoFrames:res];
+            
+            // Post results to API
             [res postCurrentData];
+            
+            // Send to end of experiment view - no more items
             [self performSegueWithIdentifier:@"experimentEndSegue" sender:self];
         });
     }
@@ -207,6 +208,38 @@
     NSArray* urlComponents = [url componentsSeparatedByString: @"/"];
     NSString* tweetID = [urlComponents objectAtIndex:([urlComponents count] -1)];
     return tweetID;
+}
+
+/**
+ *  Generate name for video based on experiment ID, item ID, and unix time
+ *
+ *  @param res Current results instance - used to retrieve item ID and experiment ID
+ *
+ *  @return File name string, appended with .mov, for use with CEMovieMaker
+ */
+-(NSString*) generateVideoName:(Result*) res{
+    // Current UNIX timetstamp
+    int time = [[NSDate date] timeIntervalSince1970];
+    
+    // Result details
+    NSString* experimentID = [res experimentID];
+    NSString* itemID = [res itemID];
+    
+    // Combine into filename
+    NSString* filename = [NSString stringWithFormat:@"/%@-%@-%d.mov", experimentID, itemID, time];
+    
+    return filename;
+}
+
+-(void) saveVideoFrames:(Result*) res{
+    NSMutableArray* resultFrames = [res videoFrames];
+    NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:320 andHeight:480];
+    NSString* videoFileName = [self generateVideoName:res];
+    self.movieMaker = [[CEMovieMaker alloc]     initWithSettings:settings videoName:videoFileName];
+    [self.movieMaker createMovieFromImages:[resultFrames copy] withCompletion:^(NSURL *fileURL){
+        NSLog(@"%@", fileURL);
+    }];
+    
 }
 
 
