@@ -10,6 +10,7 @@
 		CA0C619D1C87194100EB6428 /* pca_archive_mu.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619A1C87194100EB6428 /* pca_archive_mu.txt */; };
 		CA0C619E1C87194100EB6428 /* pca_archive_sigma.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619B1C87194100EB6428 /* pca_archive_sigma.txt */; };
 		CA0C619F1C87194100EB6428 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */; };
+		CA139C3A1CA21AAD00001EC2 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = CA139C391CA21AAD00001EC2 /* CEMovieMaker.m */; };
 		CA2571551C95F84D00DF1C57 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2571541C95F84D00DF1C57 /* Result.m */; };
 		CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7DFD231C7B3FE100DAD5BC /* Experiment.m */; };
 		CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA8D64291C7E2C04004B6D80 /* CLM.cc */; };
@@ -72,6 +73,8 @@
 		CA0C619A1C87194100EB6428 /* pca_archive_mu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_mu.txt; sourceTree = SOURCE_ROOT; };
 		CA0C619B1C87194100EB6428 /* pca_archive_sigma.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_sigma.txt; sourceTree = SOURCE_ROOT; };
 		CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pca_archive_wt.txt; sourceTree = SOURCE_ROOT; };
+		CA139C381CA21AAD00001EC2 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = SOURCE_ROOT; };
+		CA139C391CA21AAD00001EC2 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = SOURCE_ROOT; };
 		CA2571541C95F84D00DF1C57 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		CA2571561C95F87A00DF1C57 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
 		CA7DFD221C7B3FE100DAD5BC /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
@@ -188,6 +191,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA3C85761CA1D58100A965E2 /* CEMovieMaker */ = {
+			isa = PBXGroup;
+			children = (
+				CA139C381CA21AAD00001EC2 /* CEMovieMaker.h */,
+				CA139C391CA21AAD00001EC2 /* CEMovieMaker.m */,
+			);
+			name = CEMovieMaker;
+			sourceTree = "<group>";
+		};
 		CA8D64211C7E2B41004B6D80 /* FaceTracker Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +291,7 @@
 		CA8D64281C7E2BA4004B6D80 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CA3C85761CA1D58100A965E2 /* CEMovieMaker */,
 				CACF56FD1C7F54430083C0B1 /* YouTube Helper */,
 				CA8D645C1C7E2D65004B6D80 /* Experiment Model */,
 				CA8D645B1C7E2D51004B6D80 /* View Controllers */,
@@ -483,6 +496,7 @@
 				CA8D64581C7E2D13004B6D80 /* imageConversion.mm in Sources */,
 				CAC425091C77693800FAC9B2 /* QRCodeReaderController.m in Sources */,
 				CAC424F01C77633E00FAC9B2 /* HomeViewController.m in Sources */,
+				CA139C3A1CA21AAD00001EC2 /* CEMovieMaker.m in Sources */,
 				CA8D64401C7E2C05004B6D80 /* Tracker.cc in Sources */,
 				CA8D643D1C7E2C05004B6D80 /* Patch.cc in Sources */,
 				CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */,
