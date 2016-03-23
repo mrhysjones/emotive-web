@@ -15,6 +15,7 @@
 #import <opencv2/imgproc.hpp>
 #import "trackerWrapper.h"
 #import "svmWrapper.h"
+#import "CEMovieMaker.h"
 
 @interface ExperimentItemViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -26,4 +27,6 @@
 @property (nonatomic, strong) AVCaptureDeviceInput *input;
 @property (nonatomic, strong) AVCaptureVideoDataOutput *output;
 @property (nonatomic, strong) CIContext *ciContext;
+@property (nonatomic, strong) CEMovieMaker *movieMaker;
+
 @end

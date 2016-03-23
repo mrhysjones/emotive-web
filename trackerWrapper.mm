@@ -560,9 +560,9 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
     // Convert from native BGRA to RGBA
     cvtColor(dst,frame,CV_BGRA2RGBA);
     
-    
     if(scale == 1)im = frame;
     else cv::resize(frame,im,cv::Size(scale*frame.cols,scale*frame.rows));
+
     cv::flip(im,im,1);
     cv::cvtColor(im,gray,CV_BGR2GRAY);
     
@@ -571,6 +571,8 @@ void file2eig(const char * filename,std::vector<double> eigv[], int eigsize)
         [self trackPreview];
     }
     else{
+        
+        [res addVideoFrame:[imageConverter UIImageFromMat:im]];
         [self trackClassify];
     }
     

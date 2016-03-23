@@ -36,6 +36,7 @@
     Experiment* exp = [Experiment getInstance];
     Result* res = [Result getInstance];
     [res setExperimentID:exp.experimentID];
+    [res setExperimentName:exp.name];
     
     NSDictionary* firstItemData = exp.items[0];
     [res setItemID:firstItemData[@"_id"]];
@@ -43,6 +44,11 @@
     NSString* itemType = firstItemData[@"dataType"];
     NSString* itemData = firstItemData[@"data"];
     NSString* itemTimeString = firstItemData[@"displaySeconds"];
+    
+    [res setItemType:itemType];
+    [res setItemData:itemData];
+    [res setDisplaySeconds:itemTimeString];
+    
     int itemTime = [itemTimeString intValue];
     
     if ([itemType  isEqual: @"twitter"]){
@@ -127,6 +133,7 @@
     // Check if there are more items to load
     Experiment* exp = [Experiment getInstance];
     Result* res = [Result getInstance];
+    
     [exp updateCurrentItem];
     int currentIndex =  [exp.currentItem intValue];
     if (currentIndex != -1){
@@ -139,6 +146,17 @@
         
         // Wait until time is up before loading appropriate view
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            
+            // Save result frames to phone
+            NSMutableArray* resultFrames = [res videoFrames];
+            UIImage *firstFrame = [resultFrames objectAtIndex:0];
+            NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:320 andHeight:480];
+            self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
+            NSLog(@"%f", firstFrame.size.width);
+            NSLog(@"%f",firstFrame.size.height);
+            [self.movieMaker createMovieFromImages:[resultFrames copy] withCompletion:^(NSURL *fileURL){
+                NSLog(@"%@", fileURL);
+            }];
             
             [res postCurrentData];
             [res setItemID:itemData[@"_id"]];

@@ -11,9 +11,14 @@
 
 @implementation Result
 @synthesize experimentID;
+@synthesize experimentName;
 @synthesize itemID;
+@synthesize itemData;
+@synthesize itemType;
+@synthesize displaySeconds; 
 @synthesize emotionData;
 @synthesize trackingData;
+@synthesize videoFrames;
 
 static Result *instance = nil;
 
@@ -42,16 +47,57 @@ static Result *instance = nil;
 -(void)setExperimentID:(NSString *)currentExperimentID{
     emotionData = [NSMutableArray array];
     trackingData = [NSMutableArray array];
+    videoFrames = [NSMutableArray array];
     experimentID = currentExperimentID;
 }
+
+/**
+ *  Set the current experiment name that results are being gathered for
+ *
+ *  @param currentExperimentID Current experiment name
+ */
+-(void)setExperimentName:(NSString *)currentExperimentName{
+    experimentName = currentExperimentName;
+}
+
 /**
  *  Set the current item ID that results are being gathered for
  *
- *  @param currentItemID <#currentItemID description#>
+ *  @param currentItemID Current item ID
  */
 -(void)setItemID:(NSString *)currentItemID{
     itemID = currentItemID;
 }
+
+/**
+ *  Set the current item data source that results are being gathered for
+ *
+ *  @param currentItemData Data source for the item viewed
+ */
+-(void)setItemData:(NSString *)currentItemData{
+    itemData = currentItemData;
+}
+
+/**
+ *  Set the current item data type that results are being gathered for
+ *
+ *  @param currentItemType Enum value (twitter/youtube/webpage)
+ */
+-(void)setItemType:(NSString *)currentItemType{
+    itemType = currentItemType;
+}
+
+
+/**
+ *  Set the number of seconds item displayed for during experiment
+ *
+ *  @param currentDisplaySeconds Display seconds
+ */
+-(void)setDisplaySeconds:(NSString *)currentDisplaySeconds{
+    displaySeconds = currentDisplaySeconds;
+}
+
+
 
 /**
  *  Add emotion classifications of frame(s) to the emotion data results
@@ -72,6 +118,10 @@ static Result *instance = nil;
     
 }
 
+-(void)addVideoFrame:(UIImage *)frame{
+    [videoFrames addObject:frame];
+}
+
 /**
  *  Send the current results for an item to the results API via a POST request
  */
@@ -80,9 +130,12 @@ static Result *instance = nil;
     NSURL *APIUrl = [NSURL URLWithString:@"http://188.166.147.187:3000/api/results"];
     
     // Create JSON data representation of results needed for API POST request
+    
+    NSDictionary *itemsData =[[NSDictionary alloc] initWithObjectsAndKeys:itemID, @"itemID", itemData, @"data", itemType, @"dataType", displaySeconds, @"displaySeconds", nil];
+    
     NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", trackingData, @"trackingData", nil];
     
-    NSDictionary *postData = [[NSDictionary alloc] initWithObjectsAndKeys:experimentID, @"experimentID", itemID, @"itemID", resultData, @"resultData", nil];
+    NSDictionary *postData = [[NSDictionary alloc] initWithObjectsAndKeys:experimentID, @"experimentID", experimentName, @"experimentName", itemsData, @"itemData", resultData, @"resultData", nil];
     
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:postData
                                                        options:0
@@ -104,8 +157,16 @@ static Result *instance = nil;
     
     [task resume];
     
-    [emotionData removeAllObjects];
-    [trackingData removeAllObjects];
+    if ([emotionData count]){
+        [emotionData removeAllObjects];
+    }
+    if([trackingData count]){
+        [trackingData removeAllObjects];
+    }
+    
+    if([videoFrames count]){
+        [videoFrames removeAllObjects];
+    }
 }
 
 @end
