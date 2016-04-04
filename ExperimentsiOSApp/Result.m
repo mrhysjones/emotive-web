@@ -133,7 +133,9 @@ static Result *instance = nil;
     
     NSDictionary *itemsData =[[NSDictionary alloc] initWithObjectsAndKeys:itemID, @"itemID", itemData, @"data", itemType, @"dataType", displaySeconds, @"displaySeconds", nil];
     
-    NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", trackingData, @"trackingData", nil];
+    //NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", trackingData, @"trackingData", nil];
+    
+    NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", nil];
     
     NSDictionary *postData = [[NSDictionary alloc] initWithObjectsAndKeys:experimentID, @"experimentID", experimentName, @"experimentName", itemsData, @"itemData", resultData, @"resultData", nil];
     
