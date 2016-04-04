@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="936-8J-87S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="936-8J-87S">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -312,6 +312,65 @@
             </objects>
             <point key="canvasLocation" x="1165" y="19"/>
         </scene>
+        <!--Item Interval Controller-->
+        <scene sceneID="0ZW-R6-KXe">
+            <objects>
+                <viewController storyboardIdentifier="ItemIntervalController" id="jOe-KB-fdV" customClass="ItemIntervalController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DwL-iC-2CA"/>
+                        <viewControllerLayoutGuide type="bottom" id="oPd-mK-RUe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eCB-tB-5qg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cross" translatesAutoresizingMaskIntoConstraints="NO" id="KdS-70-2FQ">
+                                <rect key="frame" x="225" y="225" width="151" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="151" id="3ny-2w-9hv"/>
+                                    <constraint firstAttribute="width" constant="240" id="CYZ-fh-8ZB"/>
+                                    <constraint firstAttribute="height" constant="150" id="JFa-lF-a6h"/>
+                                    <constraint firstAttribute="height" constant="236" id="fTU-iP-Kcj"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="149" id="pNx-tP-Tm6"/>
+                                    <constraint firstAttribute="width" constant="150" id="rcl-xm-8rX"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3ny-2w-9hv"/>
+                                        <exclude reference="CYZ-fh-8ZB"/>
+                                        <exclude reference="fTU-iP-Kcj"/>
+                                        <exclude reference="pNx-tP-Tm6"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next experiment item will be shown in 3 seconds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJi-dc-XTv">
+                                <rect key="frame" x="114" y="404" width="372" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please focus your gaze on the image below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQz-ZS-hsW">
+                                <rect key="frame" x="135" y="184" width="330" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KdS-70-2FQ" firstAttribute="centerX" secondItem="eCB-tB-5qg" secondAttribute="centerX" id="HyV-5J-YFl"/>
+                            <constraint firstItem="bJi-dc-XTv" firstAttribute="top" secondItem="KdS-70-2FQ" secondAttribute="bottom" constant="30" id="Jgs-P0-p2w"/>
+                            <constraint firstItem="KdS-70-2FQ" firstAttribute="top" secondItem="qQz-ZS-hsW" secondAttribute="bottom" constant="20" id="bG1-Fr-p3s"/>
+                            <constraint firstItem="KdS-70-2FQ" firstAttribute="centerY" secondItem="eCB-tB-5qg" secondAttribute="centerY" id="kij-vO-fGP"/>
+                            <constraint firstItem="qQz-ZS-hsW" firstAttribute="centerX" secondItem="eCB-tB-5qg" secondAttribute="centerX" id="ohZ-0l-Zvp"/>
+                            <constraint firstItem="bJi-dc-XTv" firstAttribute="centerX" secondItem="eCB-tB-5qg" secondAttribute="centerX" id="wve-Dw-o6e"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nbt-sj-3uQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1129" y="780"/>
+        </scene>
         <!--EmotiveWeb: Welcome-->
         <scene sceneID="bIy-zQ-WVt">
             <objects>
@@ -331,4 +390,7 @@
             <point key="canvasLocation" x="425" y="-829"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cross" width="640" height="640"/>
+    </resources>
 </document>

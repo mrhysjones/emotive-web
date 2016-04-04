@@ -51,20 +51,43 @@
     
     int itemTime = [itemTimeString intValue];
     
-    if ([itemType  isEqual: @"twitter"]){
-        [self loadTweetView:itemData];
-        [self loadNextExperiment:itemTime];
-    }
-    else if ([itemType isEqual:@"youtube"]){
-        [self loadYoutubeView:itemData];
-        [self loadNextExperiment:itemTime];
-    }
-    else{
-        [self loadWebView:itemData];
-        [self loadNextExperiment:itemTime];
-    }
+    [self loadIntervalView];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.session startRunning];
+        if ([itemType  isEqual: @"twitter"]){
+            [self loadTweetView:itemData];
+            [self loadNextExperiment:itemTime];
+        }
+        else if ([itemType isEqual:@"youtube"]){
+            [self loadYoutubeView:itemData];
+            [self loadNextExperiment:itemTime];
+        }
+        else{
+            [self loadWebView:itemData];
+            [self loadNextExperiment:itemTime];
+        }
+    });
 }
 
+
+/**
+* Adds the experiment interval view controller between experiment items
+*
+*/
+-(void) loadIntervalView{
+    // Clear sub views
+    [self clearSubViews];
+    
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                  bundle:nil];
+    UIViewController* itemIntervalController = [sb instantiateViewControllerWithIdentifier:@"ItemIntervalController"];
+    [itemIntervalController loadView];
+    
+    // Add ItemIntervalController to view
+    [self.view addSubview:itemIntervalController.view];
+
+}
 /**
  *  Creates a TWTRTweetView and adds to view
  *
@@ -153,20 +176,26 @@
             // Post results to API
             [res postCurrentData];
             
-            // Set experiment to next item
-            [res setItemID:itemData[@"_id"]];
-            if ([itemType isEqual: @"twitter"]){
-                [self loadTweetView:itemDatasource];
-                [self loadNextExperiment:itemTime];
-            }
-            else if ([itemType isEqual:@"youtube"]){
-                [self loadYoutubeView:itemDatasource];
-                [self loadNextExperiment:itemTime];
-            }
-            else {
-                [self loadWebView:itemDatasource];
-                [self loadNextExperiment:itemTime];
-            }
+            [self.session stopRunning];
+            [self loadIntervalView];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                // Set experiment to next item
+                [self.session startRunning];
+                [res setItemID:itemData[@"_id"]];
+                if ([itemType isEqual: @"twitter"]){
+                    [self loadTweetView:itemDatasource];
+                    [self loadNextExperiment:itemTime];
+                }
+                else if ([itemType isEqual:@"youtube"]){
+                    [self loadYoutubeView:itemDatasource];
+                    [self loadNextExperiment:itemTime];
+                }
+                else {
+                    [self loadWebView:itemDatasource];
+                    [self loadNextExperiment:itemTime];
+                }
+            });
         });
     }
     else{
@@ -284,8 +313,6 @@
     if ([self.session canAddOutput:self.output]){
         [self.session addOutput:self.output];
     }
-    // Triggers captureOutput below
-    [self.session startRunning];
 }
 
 /**

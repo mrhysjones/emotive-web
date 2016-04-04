@@ -12,6 +12,7 @@
 		CA0C619F1C87194100EB6428 /* pca_archive_wt.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0C619C1C87194100EB6428 /* pca_archive_wt.txt */; };
 		CA139C3A1CA21AAD00001EC2 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = CA139C391CA21AAD00001EC2 /* CEMovieMaker.m */; };
 		CA2571551C95F84D00DF1C57 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2571541C95F84D00DF1C57 /* Result.m */; };
+		CA27D2621CB26B1C00BCD0C9 /* ItemIntervalController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27D2611CB26B1C00BCD0C9 /* ItemIntervalController.m */; };
 		CA7DFD241C7B3FE100DAD5BC /* Experiment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7DFD231C7B3FE100DAD5BC /* Experiment.m */; };
 		CA8D64391C7E2C05004B6D80 /* CLM.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA8D64291C7E2C04004B6D80 /* CLM.cc */; };
 		CA8D643A1C7E2C05004B6D80 /* FCheck.cc in Sources */ = {isa = PBXBuildFile; fileRef = CA8D642B1C7E2C04004B6D80 /* FCheck.cc */; };
@@ -77,6 +78,8 @@
 		CA139C391CA21AAD00001EC2 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = SOURCE_ROOT; };
 		CA2571541C95F84D00DF1C57 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		CA2571561C95F87A00DF1C57 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		CA27D2601CB26B1C00BCD0C9 /* ItemIntervalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemIntervalController.h; sourceTree = "<group>"; };
+		CA27D2611CB26B1C00BCD0C9 /* ItemIntervalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemIntervalController.m; sourceTree = "<group>"; };
 		CA7DFD221C7B3FE100DAD5BC /* Experiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experiment.h; sourceTree = "<group>"; };
 		CA7DFD231C7B3FE100DAD5BC /* Experiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experiment.m; sourceTree = "<group>"; };
 		CA8D64291C7E2C04004B6D80 /* CLM.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLM.cc; path = FaceTrackerLibrary/CLM.cc; sourceTree = SOURCE_ROOT; };
@@ -323,6 +326,8 @@
 				CAC425071C77693800FAC9B2 /* QRCodeReaderController.h */,
 				CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */,
 				CAC424EE1C77633E00FAC9B2 /* HomeViewController.h */,
+				CA27D2601CB26B1C00BCD0C9 /* ItemIntervalController.h */,
+				CA27D2611CB26B1C00BCD0C9 /* ItemIntervalController.m */,
 				CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */,
 				CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */,
 				CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */,
@@ -503,6 +508,7 @@
 				CA8D64541C7E2CCE004B6D80 /* svmWrapper.mm in Sources */,
 				CACF57001C7F54DC0083C0B1 /* ExperimentItemViewController.m in Sources */,
 				CAC4250C1C776FC300FAC9B2 /* ExperimentSummaryController.m in Sources */,
+				CA27D2621CB26B1C00BCD0C9 /* ItemIntervalController.m in Sources */,
 				CAC424ED1C77633E00FAC9B2 /* AppDelegate.m in Sources */,
 				CAC424EA1C77633E00FAC9B2 /* main.m in Sources */,
 				CACF56FC1C7F54330083C0B1 /* YTPlayerView.m in Sources */,
