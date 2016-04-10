@@ -179,7 +179,7 @@
             [self.session stopRunning];
             [self loadIntervalView];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  (int)(size_t)time * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 // Set experiment to next item
                 [self.session startRunning];
                 [res setItemID:itemData[@"_id"]];
