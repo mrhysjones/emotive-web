@@ -294,6 +294,7 @@
 		CA8D64281C7E2BA4004B6D80 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CAC7421B1CBC16C80093FDED /* Result Model */,
 				CA3C85761CA1D58100A965E2 /* CEMovieMaker */,
 				CACF56FD1C7F54430083C0B1 /* YouTube Helper */,
 				CA8D645C1C7E2D65004B6D80 /* Experiment Model */,
@@ -340,8 +341,6 @@
 			children = (
 				CA7DFD221C7B3FE100DAD5BC /* Experiment.h */,
 				CA7DFD231C7B3FE100DAD5BC /* Experiment.m */,
-				CA2571541C95F84D00DF1C57 /* Result.m */,
-				CA2571561C95F87A00DF1C57 /* Result.h */,
 			);
 			name = "Experiment Model";
 			sourceTree = "<group>";
@@ -379,6 +378,15 @@
 				CAC424E91C77633E00FAC9B2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CAC7421B1CBC16C80093FDED /* Result Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA2571541C95F84D00DF1C57 /* Result.m */,
+				CA2571561C95F87A00DF1C57 /* Result.h */,
+			);
+			name = "Result Model";
 			sourceTree = "<group>";
 		};
 		CACF56FD1C7F54430083C0B1 /* YouTube Helper */ = {
