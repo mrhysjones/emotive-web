@@ -46,7 +46,7 @@ static Result *instance = nil;
  */
 -(void)setExperimentID:(NSString *)currentExperimentID{
     emotionData = [NSMutableArray array];
-    trackingData = [NSMutableArray array];
+    //trackingData = [NSMutableArray array];
     videoFrames = [NSMutableArray array];
     experimentID = currentExperimentID;
 }
@@ -161,9 +161,6 @@ static Result *instance = nil;
     
     if ([emotionData count]){
         [emotionData removeAllObjects];
-    }
-    if([trackingData count]){
-        [trackingData removeAllObjects];
     }
     
     if([videoFrames count]){
