@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CEMovieMaker.h"
 
 @interface Result : NSObject {
     
@@ -32,7 +33,7 @@
 @property(nonatomic,retain)NSMutableArray *emotionData;
 @property(nonatomic,retain)NSMutableArray *trackingData;
 @property(nonatomic,retain)NSMutableArray *videoFrames;
-
+@property (nonatomic, strong) CEMovieMaker *movieMaker;
 
 +(Result*)getInstance;
 -(void)setExperimentID:(NSString *)currentExperimentID;
@@ -40,7 +41,9 @@
 -(void)addTrackingData:(NSDictionary *)tracking;
 -(void)addEmotionData:(NSDictionary *)emotions;
 -(void)addVideoFrame:(UIImage *)frame;
+-(void)saveVideoFrames;
 -(void)postCurrentData;
+
 
 
 @end

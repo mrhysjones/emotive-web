@@ -120,6 +120,11 @@ static Result *instance = nil;
 
 -(void)addVideoFrame:(UIImage *)frame{
     [videoFrames addObject:frame];
+    
+    // To reduce memory requirements of the app, save a video approximately every 15 seconds (300 frames / 20 FPS) - otherwise will crash with large content 
+    if ([videoFrames count] == 300){
+        [self saveVideoFrames];
+    }
 }
 
 /**
@@ -136,7 +141,10 @@ static Result *instance = nil;
     //NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", trackingData, @"trackingData", nil];
     
     NSDictionary *resultData = [[NSDictionary alloc] initWithObjectsAndKeys:emotionData, @"emotionData", nil];
-    
+
+//    if([trackingData count]){
+//        [trackingData removeAllObjects];
+//    }
     NSDictionary *postData = [[NSDictionary alloc] initWithObjectsAndKeys:experimentID, @"experimentID", experimentName, @"experimentName", itemsData, @"itemData", resultData, @"resultData", nil];
     
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:postData
@@ -155,17 +163,42 @@ static Result *instance = nil;
         {
             NSLog(@"Error: %@", error.localizedDescription);
         }
+        if ([emotionData count]){
+            [emotionData removeAllObjects];
+        } 
+//        if([videoFrames count]){
+//            [videoFrames removeAllObjects];
+//        }
     }];
     
     [task resume];
+}
+
+/**
+ *  Generate name for video based on experiment ID, item ID, and unix time
+ *
+ *  @param res Current results instance - used to retrieve item ID and experiment ID
+ *
+ *  @return File name string, appended with .mov, for use with CEMovieMaker
+ */
+-(NSString*) generateVideoName{
+    // Current UNIX timetstamp
+    int time = [[NSDate date] timeIntervalSince1970];
     
-    if ([emotionData count]){
-        [emotionData removeAllObjects];
-    }
+    // Combine into filename
+    NSString* filename = [NSString stringWithFormat:@"/%@-%@-%d.mov", experimentID, itemID, time];
     
-    if([videoFrames count]){
-        [videoFrames removeAllObjects];
-    }
+    return filename;
+}
+
+-(void) saveVideoFrames{
+    NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:320 andHeight:480];
+    NSString* videoFileName = [self generateVideoName];
+    self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings videoName:videoFileName];
+    [self.movieMaker createMovieFromImages:[videoFrames copy] withCompletion:^(NSURL *fileURL){
+        NSLog(@"%@", fileURL);
+    }];
+    [videoFrames removeAllObjects];
 }
 
 @end
