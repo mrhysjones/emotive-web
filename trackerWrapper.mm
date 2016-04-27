@@ -3,7 +3,6 @@
 //
 //  Created by Tom Hartley on 01/12/2012.
 //  Modified and documented by Matthew Jones on 09/09/2015 and 14/03/16
-//  Copyright (c) 2012 Tom Hartley. All rights reserved.
 //
 
 #import "trackerWrapper.h"
@@ -11,8 +10,6 @@
 using namespace cv;
 
 @implementation trackerWrapper {
-    int switchVal;
-    
     FACETRACKER::Tracker model;
     cv::Mat tri;
     cv::Mat con;
@@ -81,11 +78,11 @@ using namespace cv;
 }
 
 /**
- *  Set the FPS reference value, face tracker parameters, file paths, emotion names, and PCA information
+ *  Initialise various values for the wrapper
  */
 -(void)initialiseValues
 {
-    // Face tracker parameters
+    // Initialise FaceTracker library parameters
     wSize1.resize(1);
     wSize2.resize(3);
     wSize1[0] = 7;
@@ -103,7 +100,7 @@ using namespace cv;
     failed = true;
     
     
-    // File paths required for PCA and scaling
+    // Initialise file paths required for PCA and scaling
     trainRangePath = [[NSBundle mainBundle] pathForResource:@"emotions.train.pca" ofType:@"range"];
     wtPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_wt" ofType:@"txt"];
     muPath = [[NSBundle mainBundle] pathForResource:@"pca_archive_mu" ofType:@"txt"];
@@ -112,7 +109,7 @@ using namespace cv;
     const char *muPathString = [muPath cStringUsingEncoding:NSASCIIStringEncoding];
     const char *sigmaPathString = [sigmaPath cStringUsingEncoding:NSASCIIStringEncoding];
     
-    // Emotions that are being predicted (for screen output)
+    // Initialise emotions that are predicted by the application
     emotions = @[@"Angry", @"Contempt", @"Disgust", @"Fear", @"Happy", @"Sadness", @"Surprise", @"Natural/Other"];
     
     // Number of principle component variances

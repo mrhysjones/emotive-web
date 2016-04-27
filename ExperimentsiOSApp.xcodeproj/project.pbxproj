@@ -327,9 +327,9 @@
 				CAC425071C77693800FAC9B2 /* QRCodeReaderController.h */,
 				CAC425081C77693800FAC9B2 /* QRCodeReaderController.m */,
 				CAC424EE1C77633E00FAC9B2 /* HomeViewController.h */,
+				CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */,
 				CA27D2601CB26B1C00BCD0C9 /* ItemIntervalController.h */,
 				CA27D2611CB26B1C00BCD0C9 /* ItemIntervalController.m */,
-				CAC424EF1C77633E00FAC9B2 /* HomeViewController.m */,
 				CAC4250A1C776FC300FAC9B2 /* ExperimentSummaryController.h */,
 				CAC4250B1C776FC300FAC9B2 /* ExperimentSummaryController.m */,
 			);
@@ -431,6 +431,7 @@
 				TargetAttributes = {
 					CAC424E41C77633E00FAC9B2 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = P7HLW8563P;
 					};
 				};
 			};
@@ -633,6 +634,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +646,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrhysjones.ExperimentsiOSApp;
 				PRODUCT_NAME = EmotiveWeb;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -650,6 +654,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -660,6 +666,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrhysjones.ExperimentsiOSApp;
 				PRODUCT_NAME = EmotiveWeb;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

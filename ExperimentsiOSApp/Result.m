@@ -118,6 +118,12 @@ static Result *instance = nil;
     
 }
 
+/**
+ * Add a UIImage frame captured by the camera to the frames array used to generate
+ * video files
+ *
+ * @param frame A single camera frame
+ */
 -(void)addVideoFrame:(UIImage *)frame{
     [videoFrames addObject:frame];
     
@@ -131,7 +137,8 @@ static Result *instance = nil;
  *  Send the current results for an item to the results API via a POST request
  */
 -(void)postCurrentData{
-    // Hardcoded API URL - currently hosted on DigitalOcean
+    // Hardcoded Experiment API URL - currently hosted on DigitalOcean droplet
+    // Code for this component is available on https://github.com/mrhysjones/emotion-creation-app
     NSURL *APIUrl = [NSURL URLWithString:@"http://188.166.147.187:3000/api/results"];
     
     // Create JSON data representation of results needed for API POST request
@@ -165,10 +172,7 @@ static Result *instance = nil;
         }
         if ([emotionData count]){
             [emotionData removeAllObjects];
-        } 
-//        if([videoFrames count]){
-//            [videoFrames removeAllObjects];
-//        }
+        }
     }];
     
     [task resume];
@@ -191,6 +195,10 @@ static Result *instance = nil;
     return filename;
 }
 
+/**
+ * Save the contents of frames array to a single .mov file
+ *
+ */
 -(void) saveVideoFrames{
     NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:320 andHeight:480];
     NSString* videoFileName = [self generateVideoName];

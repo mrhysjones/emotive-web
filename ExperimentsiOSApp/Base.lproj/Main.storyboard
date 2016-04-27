@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="19"/>
+            <point key="canvasLocation" x="233" y="-325"/>
         </scene>
         <!--End of experiment-->
         <scene sceneID="62l-Nf-LTv">
@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCu-SA-H1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="2258"/>
+            <point key="canvasLocation" x="2453" y="738"/>
         </scene>
         <!--Experiment Items-->
         <scene sceneID="yYJ-QP-h2z">
@@ -110,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wol-od-baX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="1486"/>
+            <point key="canvasLocation" x="2453" y="18"/>
         </scene>
         <!--Overview-->
         <scene sceneID="QgP-Mg-8RY">
@@ -207,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sh-Ao-d2l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="19"/>
+            <point key="canvasLocation" x="1737" y="-325"/>
         </scene>
         <!--Preview-->
         <scene sceneID="kUV-sW-XAT">
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYh-J6-faE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="746"/>
+            <point key="canvasLocation" x="2453" y="-693"/>
         </scene>
         <!--Scan QR Code-->
         <scene sceneID="ZgE-RK-gkD">
@@ -310,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNL-HS-YQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165" y="19"/>
+            <point key="canvasLocation" x="1005" y="-325"/>
         </scene>
         <!--Item Interval Controller-->
         <scene sceneID="0ZW-R6-KXe">
@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbt-sj-3uQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="780"/>
+            <point key="canvasLocation" x="1425" y="572"/>
         </scene>
         <!--EmotiveWeb: Welcome-->
         <scene sceneID="bIy-zQ-WVt">
@@ -387,7 +387,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vwk-7i-9x5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="-829"/>
+            <point key="canvasLocation" x="-491" y="-325"/>
         </scene>
     </scenes>
     <resources>

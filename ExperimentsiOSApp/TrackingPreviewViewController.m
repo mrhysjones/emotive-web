@@ -16,6 +16,7 @@
 
 @synthesize videoView;
 
+// Front-camera used for the preview
 AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
 
 - (void)viewDidLoad {
@@ -97,10 +98,6 @@ AVCaptureDevicePosition pos = AVCaptureDevicePositionFront;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)faceTrack:(id)sender {
-    [self.tracker resetModel];
 }
 
 /**

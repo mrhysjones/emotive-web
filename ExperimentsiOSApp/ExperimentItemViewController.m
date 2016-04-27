@@ -40,7 +40,7 @@
     
     NSDictionary* firstItemData = exp.items[0];
     [res setItemID:firstItemData[@"_id"]];
-    
+    // Obtain and set the result data
     NSString* itemType = firstItemData[@"dataType"];
     NSString* itemData = firstItemData[@"data"];
     NSString* itemTimeString = firstItemData[@"displaySeconds"];
@@ -53,6 +53,7 @@
     
     [self loadIntervalView];
     
+    // Wait 3 seconds before loading first item
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.session startRunning];
         if ([itemType  isEqual: @"twitter"]){
@@ -180,7 +181,9 @@
             [res postCurrentData];
             [self loadIntervalView];
             
+            // Wait 3 seconds before showing next item (interval)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,  3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
                 // Set experiment to next item
                 [self.session startRunning];
                 [res setItemType:itemType];
@@ -229,8 +232,6 @@
     {
         [subView removeFromSuperview];
     }
-    
-    
 }
 
 

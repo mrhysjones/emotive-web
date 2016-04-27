@@ -17,7 +17,9 @@
 
 @implementation QRCodeReaderController
 
-NSString *qrcode;
+
+NSString *qrcode; // Will hold the value of the QR code
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -31,7 +33,7 @@ NSString *qrcode;
 
 
 /**
- *  Read QR code based on camer aframes
+ *  Read QR code using the back camera
  */
 -(void) qrRead{
     NSError *error;
